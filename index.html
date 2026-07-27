@@ -102,7 +102,7 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.85); }
   }
-  .nav-links { display: flex; gap: 28px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
+  .nav-links { display: flex; gap: 24px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
   .nav-links a { transition: color 0.2s, transform 0.2s; position: relative; }
   .nav-links a:hover { color: var(--violet-light); transform: translateY(-1px); }
   .nav-links a::before { content: "/"; color: var(--text-faint); margin-right: 6px; }
@@ -419,6 +419,23 @@
   }
   .skill-tags span:hover { border-color: var(--violet-light); transform: scale(1.03); }
 
+  /* ---------- AWARDS ---------- */
+  .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .award-card {
+    display: flex; align-items: flex-start; gap: 16px;
+    border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px;
+    background: var(--surface); backdrop-filter: blur(14px);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .award-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -8px var(--violet-glow);
+  }
+  .award-badge { color: var(--violet-light); flex-shrink: 0; margin-top: 2px; }
+  .award-text h4 { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+  .award-text p { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+
   /* ---------- CONTACT / FOOTER ---------- */
   .contact-box {
     text-align: center; padding: 80px 40px; border-radius: 16px;
@@ -463,6 +480,7 @@
   @media (max-width: 760px) {
     .about-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
     .hero { padding: 80px 0 50px; }
     .nav-links { gap: 16px; font-size: 12px; }
     .contact-box { padding: 50px 20px; }
@@ -486,6 +504,7 @@
       <a href="#about">about</a>
       <a href="#projects">projects</a>
       <a href="#skills">stack</a>
+      <a href="#awards">awards</a>
       <a href="#contact">contact</a>
     </div>
   </div>
@@ -518,6 +537,7 @@
       <button type="button" class="cmd-chip" onclick="executeChip('whoami')">whoami</button>
       <button type="button" class="cmd-chip" onclick="executeChip('skills')">skills</button>
       <button type="button" class="cmd-chip" onclick="executeChip('projects')">projects</button>
+      <button type="button" class="cmd-chip" onclick="executeChip('awards')">awards</button>
       <button type="button" class="cmd-chip" onclick="executeChip('minecraft')">minecraft</button>
       <button type="button" class="cmd-chip" onclick="executeChip('sudo hire-kurt')">sudo hire-kurt</button>
       <button type="button" class="cmd-chip" onclick="executeChip('clear')">clear</button>
@@ -646,6 +666,60 @@
   </div>
 </section>
 
+<section class="section" id="awards">
+  <div class="wrap">
+    <div class="section-eyebrow">// recognition & awards</div>
+    <div class="section-title">Received, not just claimed.</div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <svg class="award-badge" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 20.5L12 17L6.5 20.5L8 14L3 9.5L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <div class="award-text">
+          <h4>DepEd SIPP OJT Certificate of Completion</h4>
+          <p>San Jose City Division · Feb – Mar 2026</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <svg class="award-badge" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 20.5L12 17L6.5 20.5L8 14L3 9.5L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <div class="award-text">
+          <h4>Introduction to Cybersecurity</h4>
+          <p>Cisco Networking Academy · Sept 2025</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <svg class="award-badge" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 20.5L12 17L6.5 20.5L8 14L3 9.5L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <div class="award-text">
+          <h4>ThinkQuest Champion — Tagisan ng Talino</h4>
+          <p>STI College San Jose, School Level · Mar 2025</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <svg class="award-badge" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 20.5L12 17L6.5 20.5L8 14L3 9.5L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <div class="award-text">
+          <h4>ThinkQuest 3rd Place — Tagisan ng Talino</h4>
+          <p>STI College San Jose, School Level · Mar 2024</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <svg class="award-badge" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 20.5L12 17L6.5 20.5L8 14L3 9.5L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <div class="award-text">
+          <h4>Java Fundamentals — 1st & 2nd Term</h4>
+          <p>Oracle Academy · 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="contact">
   <div class="wrap">
     <div class="contact-box">
@@ -733,12 +807,16 @@
   }
 
   const commands = {
-    help: () => `Available commands: <span class="out-special">whoami, skills, projects, contact, minecraft, sudo hire-kurt, clear</span>`,
+    help: () => `Available commands: <span class="out-special">whoami, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
     whoami: () => `Kurt Fariñas — BS Computer Science graduate, San Jose City, Nueva Ecija. Frontend-leaning full-stack developer with 342 OJT hours on live government software.`,
     skills: () => `React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, MySQL, JavaScript, Git.`,
     projects: () => {
       setTimeout(() => document.getElementById('projects').scrollIntoView({behavior:'smooth'}), 300);
       return `Scrolling to projects...`;
+    },
+    awards: () => {
+      setTimeout(() => document.getElementById('awards').scrollIntoView({behavior:'smooth'}), 300);
+      return `5 earned: DepEd OJT completion, Cisco cybersecurity, 2x ThinkQuest, Oracle Java Fundamentals.`;
     },
     contact: () => {
       setTimeout(() => document.getElementById('contact').scrollIntoView({behavior:'smooth'}), 300);
