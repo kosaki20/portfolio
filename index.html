@@ -113,8 +113,8 @@
     50% { opacity: 0.4; transform: scale(0.85); }
   }
 
-  .nav-right { display: flex; align-items: center; gap: 20px; }
-  .nav-links { display: flex; gap: 20px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-links { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 12.5px; color: var(--text-muted); }
   .nav-links a { transition: color 0.3s, text-shadow 0.3s, transform 0.2s; }
   .nav-links a:hover, .nav-links a.active-glow {
     color: var(--violet-light);
@@ -327,60 +327,126 @@
     transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Section Title Glow on Scroll */
-  .section-title.in-view-glow {
-    text-shadow: 0 0 28px var(--violet-glow);
-  }
+  .section-title.in-view-glow { text-shadow: 0 0 28px var(--violet-glow); }
 
-  /* Ticket Cards Glow on Scroll */
   .ticket.in-view-glow {
     border-color: var(--border-glow);
     box-shadow: 0 16px 50px -10px var(--violet-glow), inset 0 0 25px var(--violet-glow);
   }
-  .ticket.in-view-glow .stamp {
-    box-shadow: 0 0 12px currentColor;
-  }
 
-  /* Skill Group Cards Glow on Scroll */
   .skill-group.in-view-glow {
     border-color: var(--border-glow);
     box-shadow: 0 10px 32px -8px var(--violet-glow);
     transform: translateY(-2px);
   }
-  .skill-group.in-view-glow::before {
-    opacity: 1;
-    box-shadow: 0 0 16px var(--violet-light);
-  }
+  .skill-group.in-view-glow::before { opacity: 1; box-shadow: 0 0 16px var(--violet-light); }
 
-  /* Award Cards Glow on Scroll */
   .award-card.in-view-glow {
     border-color: var(--border-glow);
     box-shadow: 0 10px 30px -8px var(--violet-glow);
     transform: translateY(-2px);
   }
-  .award-card.in-view-glow .award-badge {
-    filter: drop-shadow(0 0 10px var(--violet-light));
+  .award-card.in-view-glow .award-badge { filter: drop-shadow(0 0 10px var(--violet-light)); }
+
+  .stat-card.in-view-glow { border-color: var(--border-glow); box-shadow: 0 0 28px var(--violet-glow); }
+  .stat-card.in-view-glow .stat-number { text-shadow: 0 0 14px var(--violet-glow); }
+
+  .contact-box.in-view-glow { border-color: var(--border-glow); box-shadow: 0 24px 64px -12px var(--violet-glow); }
+  .fact-card.in-view-glow { border-color: var(--border-glow); box-shadow: 0 0 32px var(--violet-glow); }
+
+  /* ---------- INTERACTIVE CAREER & OJT TIMELINE ---------- */
+  .timeline-container { position: relative; max-width: 880px; margin: 0 auto; padding: 20px 0; }
+  .timeline-container::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 28px; width: 2px;
+    background: linear-gradient(180deg, var(--border-glow), var(--violet), var(--border));
+    opacity: 0.45;
+  }
+  .timeline-item {
+    position: relative; padding-left: 74px; margin-bottom: 36px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .timeline-item.show { opacity: 1; transform: translateY(0); }
+
+  .timeline-icon {
+    position: absolute; left: 14px; top: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--surface-solid); border: 2px solid var(--violet); color: var(--violet-light);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-mono);
+    font-size: 12px; font-weight: 700; z-index: 2; transition: all 0.3s ease;
+    box-shadow: 0 0 12px var(--violet-glow);
+  }
+  .timeline-item.in-view-glow .timeline-icon {
+    background: var(--violet); color: #FFF; border-color: var(--violet-light);
+    box-shadow: 0 0 24px var(--violet-glow); transform: scale(1.15);
   }
 
-  /* Stat Cards Glow on Scroll */
-  .stat-card.in-view-glow {
-    border-color: var(--border-glow);
-    box-shadow: 0 0 28px var(--violet-glow);
+  .timeline-content {
+    background: var(--surface); backdrop-filter: blur(14px); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px; transition: all 0.3s ease; cursor: pointer;
   }
-  .stat-card.in-view-glow .stat-number {
-    text-shadow: 0 0 14px var(--violet-glow);
+  .timeline-content:hover, .timeline-item.in-view-glow .timeline-content {
+    border-color: var(--border-glow);
+    box-shadow: 0 12px 36px -8px var(--violet-glow);
+    transform: translateY(-2px);
+  }
+  .timeline-date {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--violet-light);
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .timeline-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .timeline-desc { color: var(--text-muted); font-size: 14.5px; line-height: 1.65; }
+  .timeline-badge {
+    display: inline-block; margin-top: 12px; font-family: var(--font-mono); font-size: 11px;
+    color: var(--success); background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3);
+    padding: 3px 10px; border-radius: 4px;
   }
 
-  /* Contact Box Glow on Scroll */
-  .contact-box.in-view-glow {
-    border-color: var(--border-glow);
-    box-shadow: 0 24px 64px -12px var(--violet-glow);
+  /* ---------- WORKFLOW PIPELINE ---------- */
+  .workflow-container {
+    margin-top: 24px; padding: 22px 20px;
+    background: rgba(14, 14, 22, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 12px;
   }
+  .workflow-title {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--violet-light);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .workflow-title::before { content: "❖"; color: var(--violet-light); }
 
-  /* Fact Card Glow on Scroll */
-  .fact-card.in-view-glow {
+  .workflow-pipeline {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: relative;
+  }
+  .workflow-step {
+    position: relative; z-index: 1; text-align: center; cursor: pointer;
+    padding: 14px 10px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .workflow-step:hover, .workflow-step.active {
     border-color: var(--border-glow);
-    box-shadow: 0 0 32px var(--violet-glow);
+    box-shadow: 0 0 24px var(--violet-glow);
+    transform: translateY(-2px);
+  }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2);
+    border: 1px solid var(--border-strong); color: var(--violet-light);
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;
+    transition: all 0.3s;
+  }
+  .workflow-step.active .step-num {
+    background: var(--violet); color: #FFF; border-color: var(--violet-light);
+    box-shadow: 0 0 14px var(--violet-glow);
+  }
+  .step-label { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .step-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); line-height: 1.4; }
+
+  @media (max-width: 760px) {
+    .workflow-pipeline { grid-template-columns: repeat(2, 1fr); }
+    .timeline-container::before { left: 16px; }
+    .timeline-item { padding-left: 54px; }
+    .timeline-icon { left: 2px; }
   }
 
   /* ---------- ABOUT ---------- */
@@ -409,7 +475,6 @@
     overflow: hidden;
     opacity: 0; transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
   }
   .ticket.show { opacity: 1; transform: translateY(0); }
   .ticket:hover {
@@ -418,7 +483,6 @@
     transform: translateY(-4px);
   }
 
-  /* Skill cross-highlight pulse animation */
   .ticket.highlight-pulse {
     animation: ticketGlowPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   }
@@ -444,7 +508,6 @@
     border: 1px solid currentColor;
     transform: rotate(-2deg);
     display: inline-flex; align-items: center; gap: 6px;
-    transition: box-shadow 0.3s;
   }
   .stamp.deployed { color: var(--success); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3); }
   .stamp.shipped { color: var(--violet-light); background: rgba(139, 124, 246, 0.1); border-color: rgba(139, 124, 246, 0.3); }
@@ -486,7 +549,6 @@
     background: rgba(139, 124, 246, 0.18); border-color: var(--violet-light);
     transform: translateX(2px);
   }
-  .ticket-note { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); font-style: italic; }
 
   /* ---------- SKILLS ---------- */
   .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -499,7 +561,7 @@
   .skill-group::before {
     content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, var(--violet), transparent);
-    opacity: 0.6; transition: opacity 0.3s, box-shadow 0.3s;
+    opacity: 0.6; transition: opacity 0.3s;
   }
   .skill-group:hover { transform: translateY(-3px); border-color: var(--border-strong); }
   .skill-group h4 {
@@ -527,7 +589,7 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 30px -8px var(--violet-glow);
   }
-  .award-badge { color: var(--violet-light); flex-shrink: 0; margin-top: 2px; transition: filter 0.3s; }
+  .award-badge { color: var(--violet-light); flex-shrink: 0; margin-top: 2px; }
   .award-text h4 { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
   .award-text p { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 
@@ -538,7 +600,6 @@
     backdrop-filter: blur(16px);
     border: 1px solid var(--border-strong);
     box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
-    transition: border-color 0.4s, box-shadow 0.4s;
   }
   .contact-box h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 16px; }
   .contact-box p { color: var(--text-muted); font-size: 16.5px; margin-bottom: 34px; max-width: 520px; margin-left: auto; margin-right: auto; }
@@ -562,7 +623,7 @@
   .modal-overlay.active { opacity: 1; pointer-events: auto; }
   .modal-card {
     background: var(--surface-solid); border: 1px solid var(--border-glow); border-radius: 16px;
-    max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 32px;
+    max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 32px;
     position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.8);
     transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -574,7 +635,7 @@
   .modal-close:hover { color: var(--text); }
   .modal-badge { font-family: var(--font-mono); font-size: 11px; color: var(--violet-light); margin-bottom: 8px; display: block; }
   .modal-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; margin-bottom: 16px; }
-  .modal-section-title { font-family: var(--font-mono); font-size: 12px; color: var(--violet-light); text-transform: uppercase; margin: 20px 0 8px; }
+  .modal-section-title { font-family: var(--font-mono); font-size: 12px; color: var(--violet-light); text-transform: uppercase; margin: 24px 0 10px; }
   .modal-desc { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
   .modal-list { list-style: none; padding: 0; }
   .modal-list li { font-size: 14.5px; color: var(--text-muted); margin-bottom: 8px; padding-left: 20px; position: relative; }
@@ -607,7 +668,7 @@
     .awards-grid { grid-template-columns: 1fr; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .hero { padding: 80px 0 50px; }
-    .nav-links { gap: 12px; font-size: 11.5px; }
+    .nav-links { gap: 10px; font-size: 11px; }
     .contact-box { padding: 50px 20px; }
   }
 
@@ -628,6 +689,7 @@
     <div class="nav-right">
       <div class="nav-links">
         <a href="#about">about</a>
+        <a href="#timeline">timeline</a>
         <a href="#projects">projects</a>
         <a href="#skills">stack</a>
         <a href="#awards">awards</a>
@@ -688,6 +750,7 @@
     </div>
     <div class="terminal-shortcuts">
       <button type="button" class="cmd-chip" onclick="executeChip('whoami')">whoami</button>
+      <button type="button" class="cmd-chip" onclick="executeChip('timeline')">timeline</button>
       <button type="button" class="cmd-chip" onclick="executeChip('skills')">skills</button>
       <button type="button" class="cmd-chip" onclick="executeChip('projects')">projects</button>
       <button type="button" class="cmd-chip" onclick="executeChip('awards')">awards</button>
@@ -728,13 +791,83 @@
   </div>
 </section>
 
+<!-- INTERACTIVE CAREER & OJT TIMELINE SECTION -->
+<section class="section" id="timeline">
+  <div class="wrap">
+    <div class="section-eyebrow">// career & education timeline</div>
+    <div class="section-title">The journey from student to system builder.</div>
+
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-icon">1</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">2022 – PRESENT</div>
+          <div class="timeline-title">STI College San Jose — BS Computer Science</div>
+          <div class="timeline-desc">Enrolled in BSCS program; mastered OOP, Database Systems, Web Development, and Java Fundamentals (Oracle Academy certified).</div>
+          <span class="timeline-badge">ACADEMIC FOUNDATION</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">2</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">MARCH 2024 & MARCH 2025</div>
+          <div class="timeline-title">2x Tagisan ng Talino — ThinkQuest Awards</div>
+          <div class="timeline-desc">Competed in STI College San Jose's annual Tagisan ng Talino academic competition, securing 3rd place in 2024 and crowning Champion (1st Place) in 2025.</div>
+          <span class="timeline-badge">COMPETITION CHAMPION</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">3</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">SEPTEMBER 2025</div>
+          <div class="timeline-title">Cisco Cybersecurity Certification</div>
+          <div class="timeline-desc">Earned official Introduction to Cybersecurity certification from Cisco Networking Academy, applying secure authentication principles to web applications.</div>
+          <span class="timeline-badge">CERTIFIED</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">4</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">FEB – MARCH 2026 (342 HOURS)</div>
+          <div class="timeline-title">DepEd San Jose Division Office OJT</div>
+          <div class="timeline-desc">Owned 100% of frontend development for the DepEd HRIS Approval System. Digitalized leave requests for ICT staff & teachers. Earned 98/100 performance rating.</div>
+          <span class="timeline-badge">98/100 PERFORMANCE RATING</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">5</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">EARLY 2026</div>
+          <div class="timeline-title">Boiyet's Gym Management Thesis Defense</div>
+          <div class="timeline-desc">Solo-built and defended a commercial gym management platform featuring QR attendance scanning, revenue analytics, and member fitness tracking.</div>
+          <span class="timeline-badge">THESIS DEFENDED</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">6</div>
+        <div class="timeline-content" onclick="playAudioClick()">
+          <div class="timeline-date">JULY 31, 2026</div>
+          <div class="timeline-title">Graduation & Open to Junior Developer Roles</div>
+          <div class="timeline-desc">Official BS Computer Science graduation. Ready to contribute production-grade frontend & full-stack code to an engineering team.</div>
+          <span class="timeline-badge">OPEN_TO_WORK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="projects">
   <div class="wrap">
     <div class="section-eyebrow">// featured projects</div>
     <div class="section-title">Two systems, two different kinds of hard.</div>
 
     <div class="tickets">
-      <article class="ticket" id="ticket-hris" data-skills="react,inertia,tailwind,laravel,javascript" onclick="openProjectModal('hris')">
+      <article class="ticket" id="ticket-hris" data-skills="react,inertia,tailwind,laravel,javascript">
         <div class="ticket-head">
           <span class="ticket-id">TICKET #HRIS-2026-01</span>
           <span class="stamp deployed">● DEPLOYED</span>
@@ -745,7 +878,35 @@
             <span class="role-tag">FRONTEND OWNER</span>
           </div>
           <p class="ticket-desc">A three-role approval workflow (Applicant → Admin → Approver) built for DepEd San Jose City's ICT Department, replacing a paper-based CS Form No. 6 process. Includes PDF export, digital signature capture, and a custom AI chat agent for applicant support.</p>
-          <div class="stack-row">
+
+          <!-- Interactive Workflow Pipeline -->
+          <div class="workflow-container">
+            <div class="workflow-title">System Architecture Workflow Pipeline (Click steps to inspect)</div>
+            <div class="workflow-pipeline">
+              <div class="workflow-step active" onclick="event.stopPropagation(); setWorkflowStep('hris', 0)">
+                <div class="step-num">1</div>
+                <div class="step-label">Applicant Submission</div>
+                <div class="step-sub">CS Form No. 6 Entry</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('hris', 1)">
+                <div class="step-num">2</div>
+                <div class="step-label">AI Chat Assistant</div>
+                <div class="step-sub">Gemini Validation</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('hris', 2)">
+                <div class="step-num">3</div>
+                <div class="step-label">Admin Verification</div>
+                <div class="step-sub">Division Review</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('hris', 3)">
+                <div class="step-num">4</div>
+                <div class="step-label">Approver Sign-Off</div>
+                <div class="step-sub">PDF Export + Signature</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row" style="margin-top:20px;">
             <span class="stack-chip">React 19</span>
             <span class="stack-chip">Inertia.js</span>
             <span class="stack-chip">Tailwind CSS v4</span>
@@ -757,12 +918,12 @@
               <span class="metric"><b>342 hrs</b> logged</span>
               <span class="metric"><b>3</b> full redesigns</span>
             </div>
-            <span class="ticket-link">View Architecture & Details ↗</span>
+            <span class="ticket-link" onclick="openProjectModal('hris')">View Complete Details ↗</span>
           </div>
         </div>
       </article>
 
-      <article class="ticket" id="ticket-gym" data-skills="php,mysql,javascript,html,sql" onclick="openProjectModal('gym')">
+      <article class="ticket" id="ticket-gym" data-skills="php,mysql,javascript,html,sql">
         <div class="ticket-head">
           <span class="ticket-id">TICKET #GYM-2026-02</span>
           <span class="stamp shipped">● DEFENDED</span>
@@ -773,7 +934,35 @@
             <span class="role-tag">SOLO FULL-STACK</span>
           </div>
           <p class="ticket-desc">My thesis project: a full gym management platform built from scratch for a real client. QR-code attendance replaced a paper sign-in sheet, member records and fitness/nutrition tracking live in one place, and the owner gets a revenue dashboard instead of a notebook.</p>
-          <div class="stack-row">
+
+          <!-- Interactive Workflow Pipeline -->
+          <div class="workflow-container">
+            <div class="workflow-title">System Architecture Workflow Pipeline (Click steps to inspect)</div>
+            <div class="workflow-pipeline">
+              <div class="workflow-step active" onclick="event.stopPropagation(); setWorkflowStep('gym', 0)">
+                <div class="step-num">1</div>
+                <div class="step-label">QR Attendance</div>
+                <div class="step-sub">Front-desk Scanner</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('gym', 1)">
+                <div class="step-num">2</div>
+                <div class="step-label">AJAX Check</div>
+                <div class="step-sub">Database Verification</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('gym', 2)">
+                <div class="step-num">3</div>
+                <div class="step-label">Access Granted</div>
+                <div class="step-sub">Member Log Entry</div>
+              </div>
+              <div class="workflow-step" onclick="event.stopPropagation(); setWorkflowStep('gym', 3)">
+                <div class="step-num">4</div>
+                <div class="step-label">Analytics Dashboard</div>
+                <div class="step-sub">Revenue & Workout Data</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row" style="margin-top:20px;">
             <span class="stack-chip">PHP</span>
             <span class="stack-chip">MySQL</span>
             <span class="stack-chip">AJAX</span>
@@ -784,7 +973,7 @@
               <span class="metric">Solo-built, <b>defended</b></span>
               <span class="metric">Real client, <b>in use</b></span>
             </div>
-            <span class="ticket-link">View Architecture & Details ↗</span>
+            <span class="ticket-link" onclick="openProjectModal('gym')">View Complete Details ↗</span>
           </div>
         </div>
       </article>
@@ -921,23 +1110,53 @@
 <div id="toastLayer"></div>
 
 <script>
+  // Workflow Step Interaction
+  const workflowMessages = {
+    hris: [
+      "Step 1: Applicant fills out CS Form No. 6 leave application and attaches digital signature.",
+      "Step 2: Custom Gemini AI bot validates form inputs and checks for missing required documents.",
+      "Step 3: Admin reviews application details in division office management portal.",
+      "Step 4: Approver grants final digital sign-off and system exports official PDF with signatures."
+    ],
+    gym: [
+      "Step 1: Member scans personal QR code at gym entrance camera terminal.",
+      "Step 2: Asynchronous AJAX request verifies membership status and expiration in MySQL.",
+      "Step 3: Visual/audio green light access granted and timestamped attendance record created.",
+      "Step 4: Real-time update sent to owner revenue, workout tracking, and active visitor dashboard."
+    ]
+  };
+
+  function setWorkflowStep(projectId, stepIdx) {
+    playAudioClick();
+    const card = document.getElementById(`ticket-${projectId}`);
+    if (!card) return;
+    const steps = card.querySelectorAll('.workflow-step');
+    steps.forEach((s, idx) => {
+      if (idx === stepIdx) s.classList.add('active');
+      else s.classList.remove('active');
+    });
+    const msg = workflowMessages[projectId][stepIdx];
+    spawnToast(`WORKFLOW STEP ${stepIdx + 1}`, msg);
+  }
+
   // Scroll-Triggered Glow Observer
   const glowObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view-glow');
+        entry.target.classList.add('show');
       } else {
         entry.target.classList.remove('in-view-glow');
       }
     });
   }, {
-    threshold: 0.25,
+    threshold: 0.2,
     rootMargin: "-20px 0px -20px 0px"
   });
 
   // Attach scroll glow targets
   document.addEventListener('DOMContentLoaded', () => {
-    const glowTargets = document.querySelectorAll('.section-title, .ticket, .skill-group, .award-card, .stat-card, .contact-box, .fact-card');
+    const glowTargets = document.querySelectorAll('.section-title, .ticket, .skill-group, .award-card, .stat-card, .contact-box, .fact-card, .timeline-item');
     glowTargets.forEach(el => {
       el.classList.add('scroll-glow-target');
       glowObserver.observe(el);
@@ -1191,8 +1410,12 @@
   }
 
   const commands = {
-    help: () => `Available commands: <span class="out-special">whoami, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
+    help: () => `Available commands: <span class="out-special">whoami, timeline, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
     whoami: () => `Kurt Fariñas — BS Computer Science graduate, San Jose City, Nueva Ecija. Frontend-leaning full-stack developer with 342 OJT hours on live government software.`,
+    timeline: () => {
+      setTimeout(() => document.getElementById('timeline').scrollIntoView({behavior:'smooth'}), 300);
+      return `Scrolling to career timeline...`;
+    },
     skills: () => `React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, MySQL, JavaScript, Git.`,
     projects: () => {
       setTimeout(() => document.getElementById('projects').scrollIntoView({behavior:'smooth'}), 300);
