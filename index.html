@@ -141,8 +141,16 @@
   }
   .audio-btn:hover { border-color: var(--violet-light); color: var(--violet-light); }
 
-  /* ---------- HERO ---------- */
-  .hero { position: relative; z-index: 1; padding: 110px 0 80px; }
+  /* ---------- HERO & DUAL-COLUMN SHOWCASE ---------- */
+  .hero { position: relative; z-index: 1; padding: 100px 0 70px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .hero-left { width: 100%; }
+
   .boot-log { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); margin-bottom: 24px; min-height: 76px; }
   .boot-log .line { opacity: 0; display: block; margin-bottom: 4px; }
   .boot-log .line.show { opacity: 1; animation: fadeIn 0.3s ease forwards; }
@@ -151,7 +159,7 @@
 
   .hero h1 {
     font-family: var(--font-display);
-    font-size: clamp(38px, 6.5vw, 66px);
+    font-size: clamp(34px, 5.5vw, 60px);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.08;
@@ -168,14 +176,14 @@
   }
 
   .hero p.sub {
-    margin-top: 22px; font-size: 17.5px; color: var(--text-muted);
+    margin-top: 22px; font-size: 17px; color: var(--text-muted);
     max-width: 580px; line-height: 1.6;
     opacity: 0;
   }
   .hero p.sub.reveal { animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards; }
 
   .status-row {
-    margin-top: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
     opacity: 0;
   }
   .status-row.reveal { animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
@@ -194,7 +202,7 @@
 
   .location-tag { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); display: inline-flex; align-items: center; gap: 6px; }
 
-  .cta-row { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; }
+  .cta-row { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; }
   .cta-row.reveal { animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards; }
 
   .btn {
@@ -227,6 +235,218 @@
     box-shadow: 0 4px 16px var(--violet-glow);
   }
 
+  /* Right-hand 3D Showcase Card */
+  .hero-showcase {
+    position: relative;
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .hero-showcase.reveal { animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards; }
+
+  .showcase-card {
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 26px 24px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .showcase-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 24px 60px -12px var(--violet-glow);
+  }
+
+  .showcase-orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--violet-glow) 0%, transparent 70%);
+    top: -50px;
+    right: -50px;
+    pointer-events: none;
+    filter: blur(35px);
+    animation: orbFloat 6s ease-in-out infinite alternate;
+  }
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-25px, 25px) scale(1.2); }
+  }
+
+  .showcase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .showcase-avatar-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .showcase-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--violet) 0%, var(--violet-dim) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFF;
+    border: 2px solid var(--border-glow);
+    box-shadow: 0 0 16px var(--violet-glow);
+  }
+  .showcase-identity .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--text);
+  }
+  .showcase-identity .role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--violet-light);
+  }
+
+  .live-indicator {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--success);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .live-indicator::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success-glow);
+    animation: pulse 1.5s infinite;
+  }
+
+  .showcase-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .metric-box {
+    background: rgba(20, 20, 30, 0.65);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: all 0.25s ease;
+  }
+  .metric-box:hover {
+    border-color: var(--violet-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--violet-glow);
+  }
+  .metric-val {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .metric-val .val-highlight {
+    color: var(--violet-light);
+  }
+  .metric-lbl {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .showcase-stack-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .showcase-stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tech-pill {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text);
+    background: rgba(139, 124, 246, 0.08);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tech-pill:hover {
+    border-color: var(--violet-light);
+    background: rgba(139, 124, 246, 0.18);
+    color: var(--violet-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px var(--violet-glow);
+  }
+
+  .tech-pill .tooltip {
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(15, 15, 24, 0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glow);
+    color: var(--text);
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    z-index: 10;
+  }
+  .tech-pill:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .audio-btn.active {
+    border-color: var(--violet-light);
+    color: var(--violet-light);
+    background: rgba(139, 124, 246, 0.15);
+    box-shadow: 0 0 12px var(--violet-glow);
+  }
+
   /* Animated Stats Banner */
   .hero-stats {
     margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -243,7 +463,7 @@
 
   /* ---------- TERMINAL ---------- */
   .terminal {
-    margin-top: 40px; max-width: 640px;
+    margin-top: 32px; max-width: 100%;
     background: var(--surface);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -662,6 +882,10 @@
   .toast .toast-title { font-size: 10px; color: var(--violet-light); letter-spacing: 0.08em; font-weight: 600; margin-bottom: 3px; }
   .toast .toast-body { font-size: 12.5px; color: var(--text); }
 
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
   @media (max-width: 760px) {
     .about-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
@@ -674,7 +898,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
-    .hero h1, .hero p.sub, .status-row, .cta-row, .terminal, .hero-stats { opacity: 1; transform: none; }
+    .hero h1, .hero p.sub, .status-row, .cta-row, .terminal, .hero-stats, .hero-showcase { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -707,20 +931,118 @@
 </nav>
 
 <header class="hero wrap" id="hero">
-  <div class="boot-log" id="bootLog"></div>
-  <h1 id="heroH1">Kurt Fariñas builds systems that <span class="accent">actually ship.</span></h1>
-  <p class="sub" id="heroSub">BS Computer Science graduate turning OJT hours and a defended thesis into production-grade frontend work. Currently looking for a junior developer seat.</p>
-  
-  <div class="status-row" id="heroStatus">
-    <span class="chip">OPEN_TO_WORK</span>
-    <span class="location-tag">📍 San Jose City, Nueva Ecija, PH</span>
+  <div class="hero-grid">
+    <!-- LEFT COLUMN: Intro, CTAs & Interactive Shell -->
+    <div class="hero-left">
+      <div class="boot-log" id="bootLog"></div>
+      <h1 id="heroH1">Kurt Fariñas builds systems that <span class="accent">actually ship.</span></h1>
+      <p class="sub" id="heroSub">BS Computer Science graduate turning OJT hours and a defended thesis into production-grade frontend work. Currently looking for a junior developer seat.</p>
+      
+      <div class="status-row" id="heroStatus">
+        <span class="chip">OPEN_TO_WORK</span>
+        <span class="location-tag">📍 San Jose City, Nueva Ecija, PH</span>
+      </div>
+
+      <div class="cta-row" id="heroCta">
+        <a href="#projects" class="btn btn-primary" onclick="playAudioClick()">View Projects →</a>
+        <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me ✉️</button>
+      </div>
+
+      <div class="terminal" id="terminal">
+        <div class="terminal-titlebar">
+          <span class="dot-btn red"></span>
+          <span class="dot-btn yellow"></span>
+          <span class="dot-btn green"></span>
+          <span class="title-text">kurt@portfolio:~ (bash)</span>
+          <span class="hint">interactive shell</span>
+        </div>
+        <div class="terminal-shortcuts">
+          <button type="button" class="cmd-chip" onclick="executeChip('whoami')">whoami</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('timeline')">timeline</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('skills')">skills</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('projects')">projects</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('awards')">awards</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('minecraft')">minecraft</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('sudo hire-kurt')">sudo hire-kurt</button>
+          <button type="button" class="cmd-chip" onclick="executeChip('clear')">clear</button>
+        </div>
+        <div class="terminal-output" id="termOutput">
+          <div class="out-line">Type <span class="out-special">help</span> or click a chip above to see what this thing can do.</div>
+        </div>
+        <div class="terminal-input-row">
+          <span class="prompt">kurt@portfolio:~$</span>
+          <input type="text" id="termInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="help">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: 3D GLASS SHOWCASE CARD -->
+    <div class="hero-showcase" id="heroShowcase">
+      <div class="showcase-card" id="showcaseCard">
+        <div class="showcase-orb"></div>
+        
+        <div class="showcase-header">
+          <div class="showcase-avatar-group">
+            <div class="showcase-avatar">KF</div>
+            <div class="showcase-identity">
+              <div class="name">Kurt Fariñas</div>
+              <div class="role">System Builder & Dev</div>
+            </div>
+          </div>
+          <span class="live-indicator">ACTIVE</span>
+        </div>
+
+        <div class="showcase-metrics">
+          <div class="metric-box">
+            <div class="metric-val"><span class="val-highlight">342h</span></div>
+            <div class="metric-lbl">OJT Hours Logged</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val"><span class="val-highlight">98</span><span style="font-size:12px;color:var(--text-faint)">/100</span></div>
+            <div class="metric-lbl">OJT Rating</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val"><span class="val-highlight">2</span></div>
+            <div class="metric-lbl">Production Apps</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val"><span class="val-highlight">100%</span></div>
+            <div class="metric-lbl">Thesis Defended</div>
+          </div>
+        </div>
+
+        <div class="showcase-stack-title">// PRIMARY CORE STACK</div>
+        <div class="showcase-stack-grid">
+          <div class="tech-pill" onclick="playAudioTone(900)">
+            <span>PHP / Laravel</span>
+            <span class="tooltip">DepEd HRIS & Backend APIs</span>
+          </div>
+          <div class="tech-pill" onclick="playAudioTone(950)">
+            <span>React / Inertia</span>
+            <span class="tooltip">Modern SPA UI Architecture</span>
+          </div>
+          <div class="tech-pill" onclick="playAudioTone(1000)">
+            <span>Tailwind CSS</span>
+            <span class="tooltip">Custom Responsive Design Systems</span>
+          </div>
+          <div class="tech-pill" onclick="playAudioTone(1050)">
+            <span>MySQL / Relational</span>
+            <span class="tooltip">Database Schema & Query Opts</span>
+          </div>
+          <div class="tech-pill" onclick="playAudioTone(1100)">
+            <span>Git / GitHub</span>
+            <span class="tooltip">Version Control & Workflows</span>
+          </div>
+          <div class="tech-pill" onclick="playAudioTone(1150)">
+            <span>SysAdmin / Linux</span>
+            <span class="tooltip">Self-hosted Services & Tunneling</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="cta-row" id="heroCta">
-    <a href="#projects" class="btn btn-primary" onclick="playAudioClick()">View Projects →</a>
-    <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me ✉️</button>
-  </div>
-
+  <!-- STATS BANNER -->
   <div class="hero-stats" id="heroStats">
     <div class="stat-card">
       <div class="stat-number" data-target="342">0</div>
@@ -737,33 +1059,6 @@
     <div class="stat-card">
       <div class="stat-number" data-target="5">0</div>
       <div class="stat-label">Awards & Certs</div>
-    </div>
-  </div>
-
-  <div class="terminal" id="terminal">
-    <div class="terminal-titlebar">
-      <span class="dot-btn red"></span>
-      <span class="dot-btn yellow"></span>
-      <span class="dot-btn green"></span>
-      <span class="title-text">kurt@portfolio:~ (bash)</span>
-      <span class="hint">interactive shell</span>
-    </div>
-    <div class="terminal-shortcuts">
-      <button type="button" class="cmd-chip" onclick="executeChip('whoami')">whoami</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('timeline')">timeline</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('skills')">skills</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('projects')">projects</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('awards')">awards</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('minecraft')">minecraft</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('sudo hire-kurt')">sudo hire-kurt</button>
-      <button type="button" class="cmd-chip" onclick="executeChip('clear')">clear</button>
-    </div>
-    <div class="terminal-output" id="termOutput">
-      <div class="out-line">Type <span class="out-special">help</span> or click a chip above to see what this thing can do.</div>
-    </div>
-    <div class="terminal-input-row">
-      <span class="prompt">kurt@portfolio:~$</span>
-      <input type="text" id="termInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="help">
     </div>
   </div>
 </header>
@@ -1345,6 +1640,114 @@
     document.getElementById('projectModal').classList.remove('active');
   }
 
+  // ---------- WEB AUDIO API SYNTHESIZER SOUND ENGINE ----------
+  let audioCtx = null;
+  let audioEnabled = false;
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtxClass) audioCtx = new AudioCtxClass();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function toggleAudio() {
+    initAudio();
+    audioEnabled = !audioEnabled;
+    const btn = document.getElementById('audioToggle');
+    if (btn) {
+      if (audioEnabled) {
+        btn.innerHTML = '🔊 FX ON';
+        btn.classList.add('active');
+        playAudioChime();
+        spawnToast('AUDIO ENABLED', 'Interactive UI sound effects activated.');
+      } else {
+        btn.innerHTML = '🔇 FX OFF';
+        btn.classList.remove('active');
+      }
+    }
+  }
+
+  function playAudioClick() {
+    if (!audioEnabled || !audioCtx) return;
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.04);
+    } catch(e){}
+  }
+
+  function playAudioChime() {
+    if (!audioEnabled || !audioCtx) return;
+    try {
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+      notes.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.06);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime + idx * 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.06 + 0.15);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(audioCtx.currentTime + idx * 0.06);
+        osc.stop(audioCtx.currentTime + idx * 0.06 + 0.15);
+      });
+    } catch(e){}
+  }
+
+  function playAudioTone(freq, dur = 0.06) {
+    if (!audioEnabled || !audioCtx) return;
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch(e){}
+  }
+
+  function setThemeAccent(theme) {
+    document.body.setAttribute('data-theme', theme);
+    document.querySelectorAll('.theme-dot').forEach(dot => {
+      dot.classList.toggle('active', dot.classList.contains(theme));
+    });
+    playAudioChime();
+  }
+
+  // 3D Parallax tilt effect for hero showcase card
+  const showcaseContainer = document.getElementById('heroShowcase');
+  const showcaseCard = document.getElementById('showcaseCard');
+  if (showcaseContainer && showcaseCard) {
+    showcaseContainer.addEventListener('mousemove', (e) => {
+      const rect = showcaseCard.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / rect.height) * 16;
+      const rotateY = (x / rect.width) * 16;
+      showcaseCard.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    showcaseContainer.addEventListener('mouseleave', () => {
+      showcaseCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  }
+
   // Spotlight Cursor Track
   document.addEventListener('mousemove', (e) => {
     document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
@@ -1360,21 +1763,24 @@
   ];
   const bootLog = document.getElementById('bootLog');
   let delay = 0;
-  bootLines.forEach((line) => {
-    const el = document.createElement('span');
-    el.className = 'line';
-    el.innerHTML = line;
-    bootLog.appendChild(el);
-    delay += 180;
-    setTimeout(() => el.classList.add('show'), delay);
-  });
+  if (bootLog) {
+    bootLines.forEach((line) => {
+      const el = document.createElement('span');
+      el.className = 'line';
+      el.innerHTML = line;
+      bootLog.appendChild(el);
+      delay += 180;
+      setTimeout(() => el.classList.add('show'), delay);
+    });
+  }
   setTimeout(() => {
-    document.getElementById('heroH1').classList.add('reveal');
-    document.getElementById('heroSub').classList.add('reveal');
-    document.getElementById('heroStatus').classList.add('reveal');
-    document.getElementById('heroCta').classList.add('reveal');
-    document.getElementById('heroStats').classList.add('reveal');
-    document.getElementById('terminal').classList.add('reveal');
+    if (document.getElementById('heroH1')) document.getElementById('heroH1').classList.add('reveal');
+    if (document.getElementById('heroSub')) document.getElementById('heroSub').classList.add('reveal');
+    if (document.getElementById('heroStatus')) document.getElementById('heroStatus').classList.add('reveal');
+    if (document.getElementById('heroCta')) document.getElementById('heroCta').classList.add('reveal');
+    if (document.getElementById('heroShowcase')) document.getElementById('heroShowcase').classList.add('reveal');
+    if (document.getElementById('heroStats')) document.getElementById('heroStats').classList.add('reveal');
+    if (document.getElementById('terminal')) document.getElementById('terminal').classList.add('reveal');
   }, delay + 150);
 
   // Ticket reveal on scroll
