@@ -3124,19 +3124,7 @@
       }
     });
 
-    // Graduation countdown -> July 31, 2026
-    const gradDate = new Date('2026-07-31T00:00:00+08:00');
-    function updateCountdown() {
-      const now = new Date();
-      const diff = gradDate - now;
-      const el = document.getElementById('countdown');
-      if (diff <= 0) { el.textContent = "GRADUATED 🎉"; return; }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      el.textContent = d + "d " + h + "h";
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
+
 
     // Hamburger mobile menu
     function toggleMenu() {
