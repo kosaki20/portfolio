@@ -4,7 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kurt Fariñas — Junior Developer & System Builder</title>
-<meta name="description" content="Portfolio of Kurt Fariñas — BS Computer Science graduate, frontend owner of DepEd HRIS approval system, and creator of Boiyet's Gym Management System.">
+<meta name="description" content="Portfolio of Kurt Fariñas — BS Computer Science graduate, frontend owner of DepEd HRIS approval system, and creator of Boiyet's Gym Management System. Open to junior frontend and full-stack developer roles.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png">
+
+<!-- Open Graph / Social Preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kurtfarinas.dev/">
+<meta property="og:title" content="Kurt Fariñas — Junior Developer & System Builder">
+<meta property="og:description" content="BS Computer Science graduate. Frontend owner of the DepEd HRIS Approval System. Solo-built and defended a full gym management platform. Open to junior developer roles.">
+<meta property="og:image" content="hris-mockup.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kurt Fariñas — Junior Developer & System Builder">
+<meta name="twitter:description" content="BS Computer Science graduate. 342 OJT hours on live government software. Open to junior developer roles.">
+<meta name="twitter:image" content="hris-mockup.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -882,6 +900,91 @@
   .toast .toast-title { font-size: 10px; color: var(--violet-light); letter-spacing: 0.08em; font-weight: 600; margin-bottom: 3px; }
   .toast .toast-body { font-size: 12.5px; color: var(--text); }
 
+  /* ---------- HAMBURGER MENU ---------- */
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer;
+    padding: 6px; margin-left: 8px; border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .hamburger:hover { background: var(--border); }
+  .hamburger span {
+    display: block; width: 20px; height: 2px;
+    background: var(--text-muted); border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: rgba(10, 10, 18, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    padding: 16px 24px 20px;
+    gap: 4px;
+    position: absolute; left: 0; right: 0; top: 100%;
+    z-index: 90;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 10px 12px; font-size: 14px; font-family: var(--font-mono);
+    color: var(--text-muted); border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-menu a:hover { background: var(--border); color: var(--text); }
+  .mobile-menu a:last-child { color: var(--violet-light); margin-top: 8px; border-top: 1px solid var(--border); padding-top: 14px; }
+
+  /* ---------- PROJECT SCREENSHOT ---------- */
+  .project-screenshot {
+    margin: 18px 0 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    max-height: 220px;
+    background: var(--surface-solid);
+  }
+  .project-screenshot img {
+    width: 100%; height: 220px;
+    object-fit: cover; object-position: top;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .project-screenshot:hover img { transform: scale(1.02); }
+
+  /* ---------- SKILL PROFICIENCY ---------- */
+  .skill-legend {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .prof-badge {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.07em;
+    padding: 3px 9px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .prof-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .prof-badge.prof-pro { color: var(--success); background: var(--success-glow); border: 1px solid rgba(52,211,153,0.25); }
+  .prof-badge.prof-pro::before { background: var(--success); }
+  .prof-badge.prof-mid { color: var(--violet-light); background: var(--violet-glow); border: 1px solid var(--border); }
+  .prof-badge.prof-mid::before { background: var(--violet-light); }
+  .prof-badge.prof-learn { color: var(--warning); background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.2); }
+  .prof-badge.prof-learn::before { background: var(--warning); }
+
+  .skill-tags .has-prof { position: relative; padding-right: 18px; }
+  .prof-dot {
+    position: absolute; top: 5px; right: 4px;
+    width: 6px; height: 6px; border-radius: 50%;
+    font-style: normal; display: block;
+  }
+  .prof-dot.prof-pro { background: var(--success); box-shadow: 0 0 6px var(--success); }
+  .prof-dot.prof-mid { background: var(--violet-light); box-shadow: 0 0 6px var(--violet-light); }
+  .prof-dot.prof-learn { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
+
+  /* ---------- CONTACT LINKS WRAP ---------- */
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   }
@@ -892,8 +995,11 @@
     .awards-grid { grid-template-columns: 1fr; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .hero { padding: 80px 0 50px; }
-    .nav-links { gap: 10px; font-size: 11px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .theme-switcher { display: none; }
     .contact-box { padding: 50px 20px; }
+    .cta-row { flex-wrap: wrap; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -911,13 +1017,13 @@
   <div class="wrap">
     <div class="logo"><span class="dot"></span>kurt.dev</div>
     <div class="nav-right">
-      <div class="nav-links">
-        <a href="#about">about</a>
-        <a href="#timeline">timeline</a>
-        <a href="#projects">projects</a>
-        <a href="#skills">stack</a>
-        <a href="#awards">awards</a>
-        <a href="#contact">contact</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMenu()">about</a>
+        <a href="#timeline" onclick="closeMenu()">timeline</a>
+        <a href="#projects" onclick="closeMenu()">projects</a>
+        <a href="#skills" onclick="closeMenu()">stack</a>
+        <a href="#awards" onclick="closeMenu()">awards</a>
+        <a href="#contact" onclick="closeMenu()">contact</a>
       </div>
       <div class="theme-switcher" title="Change Theme Accent">
         <div class="theme-dot violet active" onclick="setThemeAccent('violet')"></div>
@@ -925,18 +1031,32 @@
         <div class="theme-dot cyan" onclick="setThemeAccent('cyan')"></div>
         <div class="theme-dot orange" onclick="setThemeAccent('orange')"></div>
       </div>
-      <button type="button" class="audio-btn" id="audioToggle" onclick="toggleAudio()" title="Toggle Web Audio UI Sounds">🔊 FX</button>
+      <button type="button" class="audio-btn" id="audioToggle" onclick="toggleAudio()" title="Toggle Web Audio UI Sounds">🔇 FX</button>
+      <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+  <!-- Mobile dropdown -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMenu()">about</a>
+    <a href="#timeline" onclick="closeMenu()">timeline</a>
+    <a href="#projects" onclick="closeMenu()">projects</a>
+    <a href="#skills" onclick="closeMenu()">stack</a>
+    <a href="#awards" onclick="closeMenu()">awards</a>
+    <a href="#contact" onclick="closeMenu()">contact</a>
+    <a href="resume.pdf" download onclick="closeMenu()">resume ↓</a>
   </div>
 </nav>
 
+<main>
 <header class="hero wrap" id="hero">
   <div class="hero-grid">
     <!-- LEFT COLUMN: Intro, CTAs & Interactive Shell -->
     <div class="hero-left">
       <div class="boot-log" id="bootLog"></div>
       <h1 id="heroH1">Kurt Fariñas builds systems that <span class="accent">actually ship.</span></h1>
-      <p class="sub" id="heroSub">BS Computer Science graduate turning OJT hours and a defended thesis into production-grade frontend work. Currently looking for a junior developer seat.</p>
+      <p class="sub" id="heroSub">BS Computer Science graduate. Owned frontend end-to-end on a live government system. Defended a solo-built thesis app for a real client. Now looking for a junior developer seat.</p>
       
       <div class="status-row" id="heroStatus">
         <span class="chip">OPEN_TO_WORK</span>
@@ -945,6 +1065,7 @@
 
       <div class="cta-row" id="heroCta">
         <a href="#projects" class="btn btn-primary" onclick="playAudioClick()">View Projects →</a>
+        <a href="resume.pdf" class="btn btn-secondary" download onclick="playAudioClick()">Download CV ↓</a>
         <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me ✉️</button>
       </div>
 
@@ -1049,12 +1170,12 @@
       <div class="stat-label">OJT Hours Logged</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number" data-target="98">0</div>
-      <div class="stat-label">OJT Rating (100)</div>
+      <div class="stat-number" data-target="3">0</div>
+      <div class="stat-label">Full UI Redesigns</div>
     </div>
     <div class="stat-card">
       <div class="stat-number" data-target="2">0</div>
-      <div class="stat-label">Major Systems</div>
+      <div class="stat-label">Production Systems</div>
     </div>
     <div class="stat-card">
       <div class="stat-number" data-target="5">0</div>
@@ -1069,13 +1190,14 @@
     <div class="section-title">Built for real-world complexity, not just tutorials.</div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I graduate from <strong>STI College San Jose</strong> on July 31, 2026, but I've already spent a full OJT cycle owning frontend development end-to-end on a live government system, and defended a solo-built gym management platform as my thesis.</p>
+        <p>I graduated from <strong>STI College San Jose</strong> with a BS in Computer Science in July 2026. I spent a full OJT cycle owning frontend development end-to-end on a live government system, and defended a solo-built gym management platform as my thesis.</p>
         <p>I like the parts of software that most people skip past: approval states, edge cases in legacy environments, and making something that a 50-year-old office worker who's never used a web app can operate without a manual.</p>
         <p>Off the clock: <strong>Valorant</strong>, running a small self-hosted Minecraft server for friends, and OPM acoustic playlists on loop while I work.</p>
       </div>
       <div class="fact-card">
         <div class="fact-list">
           <div class="fact"><span class="label">Status</span><span class="value-highlight">OPEN_TO_WORK</span></div>
+          <div class="fact"><span class="label">Degree</span><span class="value">BS Computer Science — Class of 2026</span></div>
           <div class="fact"><span class="label">Focus</span><span class="value">Frontend / Full-stack</span></div>
           <div class="fact"><span class="label">Primary Stack</span><span class="value">React, Laravel, Tailwind</span></div>
           <div class="fact"><span class="label">Location</span><span class="value">Nueva Ecija, PH</span></div>
@@ -1173,6 +1295,10 @@
             <span class="role-tag">FRONTEND OWNER</span>
           </div>
           <p class="ticket-desc">A three-role approval workflow (Applicant → Admin → Approver) built for DepEd San Jose City's ICT Department, replacing a paper-based CS Form No. 6 process. Includes PDF export, digital signature capture, and a custom AI chat agent for applicant support.</p>
+          <!-- Project Screenshot -->
+          <div class="project-screenshot">
+            <img src="hris-mockup.png" alt="DepEd HRIS Approval System dashboard UI mockup" loading="lazy">
+          </div>
 
           <!-- Interactive Workflow Pipeline -->
           <div class="workflow-container">
@@ -1229,6 +1355,10 @@
             <span class="role-tag">SOLO FULL-STACK</span>
           </div>
           <p class="ticket-desc">My thesis project: a full gym management platform built from scratch for a real client. QR-code attendance replaced a paper sign-in sheet, member records and fitness/nutrition tracking live in one place, and the owner gets a revenue dashboard instead of a notebook.</p>
+          <!-- Project Screenshot -->
+          <div class="project-screenshot">
+            <img src="gym-mockup.png" alt="Boiyet's Gym Management System dashboard UI mockup" loading="lazy">
+          </div>
 
           <!-- Interactive Workflow Pipeline -->
           <div class="workflow-container">
@@ -1280,32 +1410,40 @@
   <div class="wrap">
     <div class="section-eyebrow">// tech stack (click any skill to filter)</div>
     <div class="section-title">Tools & technologies I engineer with.</div>
+    <div class="skill-legend">
+      <span class="prof-badge prof-pro">Production</span>
+      <span class="prof-badge prof-mid">Proficient</span>
+      <span class="prof-badge prof-learn">Learning</span>
+    </div>
     <div class="skills-grid">
       <div class="skill-group">
         <h4>Languages</h4>
         <div class="skill-tags">
-          <span onclick="highlightSkill('javascript')">JavaScript</span>
-          <span onclick="highlightSkill('php')">PHP</span>
-          <span onclick="highlightSkill('html')">HTML / CSS</span>
-          <span onclick="highlightSkill('sql')">SQL</span>
+          <span onclick="highlightSkill('javascript')" class="has-prof">JavaScript<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('php')" class="has-prof">PHP<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('html')" class="has-prof">HTML / CSS<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('sql')" class="has-prof">SQL<em class="prof-dot prof-mid" title="Proficient"></em></span>
+          <span onclick="highlightSkill('java')" class="has-prof">Java<em class="prof-dot prof-mid" title="Oracle Academy certified"></em></span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Frameworks</h4>
         <div class="skill-tags">
-          <span onclick="highlightSkill('react')">React 19</span>
-          <span onclick="highlightSkill('inertia')">Inertia.js</span>
-          <span onclick="highlightSkill('laravel')">Laravel 12</span>
-          <span onclick="highlightSkill('tailwind')">Tailwind CSS v4</span>
+          <span onclick="highlightSkill('react')" class="has-prof">React 19<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('inertia')" class="has-prof">Inertia.js<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('laravel')" class="has-prof">Laravel 12<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('tailwind')" class="has-prof">Tailwind CSS v4<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('livewire')" class="has-prof">Livewire<em class="prof-dot prof-mid" title="Proficient"></em></span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Tools & APIs</h4>
         <div class="skill-tags">
-          <span onclick="highlightSkill('git')">Git / GitHub</span>
-          <span onclick="highlightSkill('mysql')">MySQL</span>
-          <span onclick="highlightSkill('vscode')">VS Code</span>
-          <span onclick="highlightSkill('gemini')">Gemini API</span>
+          <span onclick="highlightSkill('git')" class="has-prof">Git / GitHub<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('mysql')" class="has-prof">MySQL<em class="prof-dot prof-pro" title="Production level"></em></span>
+          <span onclick="highlightSkill('vscode')" class="has-prof">VS Code<em class="prof-dot prof-pro" title="Daily driver"></em></span>
+          <span onclick="highlightSkill('gemini')" class="has-prof">Gemini API<em class="prof-dot prof-mid" title="Integrated into HRIS"></em></span>
+          <span onclick="highlightSkill('linux')" class="has-prof">Linux / SysAdmin<em class="prof-dot prof-mid" title="Self-hosted services"></em></span>
         </div>
       </div>
     </div>
@@ -1372,17 +1510,21 @@
       <h2>Let's build something.</h2>
       <p>Open to junior developer roles — frontend, full-stack, or wherever a team needs someone who ships production-ready code.</p>
       <div class="contact-links">
-        <button type="button" class="btn btn-primary" onclick="copyEmail()">kurtfarinas2022@gmail.com 📋</button>
-        <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener" onclick="playAudioClick()">GitHub Profile ↗</a>
+        <button type="button" class="btn btn-primary" onclick="copyEmail()" title="Click to copy email address">kurtfarinas2022@gmail.com 📋</button>
+        <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary" onclick="playAudioClick()">Open in Mail ✉️</a>
+        <a href="https://linkedin.com/in/kurtfarinas" class="btn btn-secondary" target="_blank" rel="noopener" onclick="playAudioClick()">LinkedIn ↗</a>
+        <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener" onclick="playAudioClick()">GitHub ↗</a>
+        <a href="resume.pdf" class="btn btn-secondary" download onclick="playAudioClick()">Download CV ↓</a>
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <footer class="wrap">
   <div class="footer-row">
     <span>© 2026 Kurt Fariñas. Crafted with precision.</span>
-    <span>GRADUATING IN: <span id="countdown">—</span></span>
+    <span>BS Computer Science — <span id="countdown">—</span></span>
   </div>
 </footer>
 
@@ -1973,6 +2115,38 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 60000);
+
+  // Hamburger mobile menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    playAudioClick();
+  }
+  function closeMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const nav = document.querySelector('nav');
+    if (!nav.contains(e.target)) closeMenu();
+  });
+
+  // Scroll progress bar
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = 'position:fixed;top:0;left:0;height:2px;background:var(--violet-light);z-index:200;transition:width 0.1s linear;width:0%;pointer-events:none;box-shadow:0 0 8px var(--violet-light);';
+  document.body.appendChild(progressBar);
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrolled / total * 100).toFixed(1) + '%';
+  });
 </script>
 
 </body>
