@@ -12,7 +12,7 @@
 
 <!-- Open Graph / Social Preview -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kurtfarinas.dev/">
+<meta property="og:url" content="https://kosaki20.github.io/portfolio/">
 <meta property="og:title" content="Kurt Fariñas — Junior Developer & System Builder">
 <meta property="og:description" content="BS Computer Science graduate. Frontend owner of the DepEd HRIS Approval System. Solo-built and defended a full gym management platform. Open to junior developer roles.">
 <meta property="og:image" content="hris-mockup.png">
@@ -151,13 +151,6 @@
   .theme-dot.cyan { background: #06B6D4; }
   .theme-dot.orange { background: #F97316; }
 
-  /* Audio Toggle Button */
-  .audio-btn {
-    background: transparent; border: 1px solid var(--border); color: var(--text-muted);
-    padding: 4px 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 12px; cursor: pointer;
-    transition: all 0.2s;
-  }
-  .audio-btn:hover { border-color: var(--violet-light); color: var(--violet-light); }
 
   /* ---------- HERO & DUAL-COLUMN SHOWCASE ---------- */
   .hero { position: relative; z-index: 1; padding: 100px 0 70px; }
@@ -456,13 +449,6 @@
   .tech-pill:hover .tooltip {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
-  }
-
-  .audio-btn.active {
-    border-color: var(--violet-light);
-    color: var(--violet-light);
-    background: rgba(139, 124, 246, 0.15);
-    box-shadow: 0 0 12px var(--violet-glow);
   }
 
   /* Animated Stats Banner */
@@ -1031,7 +1017,7 @@
         <div class="theme-dot cyan" onclick="setThemeAccent('cyan')"></div>
         <div class="theme-dot orange" onclick="setThemeAccent('orange')"></div>
       </div>
-      <button type="button" class="audio-btn" id="audioToggle" onclick="toggleAudio()" title="Toggle Web Audio UI Sounds">🔇 FX</button>
+
       <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1064,8 +1050,8 @@
       </div>
 
       <div class="cta-row" id="heroCta">
-        <a href="#projects" class="btn btn-primary" onclick="playAudioClick()">View Projects →</a>
-        <a href="resume.pdf" class="btn btn-secondary" download onclick="playAudioClick()">Download CV ↓</a>
+        <a href="#projects" class="btn btn-primary">View Projects 🚀</a>
+        <a href="resume.pdf" class="btn btn-secondary" download>Download CV 📄</a>
         <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me ✉️</button>
       </div>
 
@@ -1134,27 +1120,27 @@
 
         <div class="showcase-stack-title">// PRIMARY CORE STACK</div>
         <div class="showcase-stack-grid">
-          <div class="tech-pill" onclick="playAudioTone(900)">
+          <div class="tech-pill">
             <span>PHP / Laravel</span>
             <span class="tooltip">DepEd HRIS & Backend APIs</span>
           </div>
-          <div class="tech-pill" onclick="playAudioTone(950)">
+          <div class="tech-pill">
             <span>React / Inertia</span>
             <span class="tooltip">Modern SPA UI Architecture</span>
           </div>
-          <div class="tech-pill" onclick="playAudioTone(1000)">
+          <div class="tech-pill">
             <span>Tailwind CSS</span>
             <span class="tooltip">Custom Responsive Design Systems</span>
           </div>
-          <div class="tech-pill" onclick="playAudioTone(1050)">
+          <div class="tech-pill">
             <span>MySQL / Relational</span>
             <span class="tooltip">Database Schema & Query Opts</span>
           </div>
-          <div class="tech-pill" onclick="playAudioTone(1100)">
+          <div class="tech-pill">
             <span>Git / GitHub</span>
             <span class="tooltip">Version Control & Workflows</span>
           </div>
-          <div class="tech-pill" onclick="playAudioTone(1150)">
+          <div class="tech-pill">
             <span>SysAdmin / Linux</span>
             <span class="tooltip">Self-hosted Services & Tunneling</span>
           </div>
@@ -1217,7 +1203,7 @@
     <div class="timeline-container">
       <div class="timeline-item">
         <div class="timeline-icon">1</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">2022 – PRESENT</div>
           <div class="timeline-title">STI College San Jose — BS Computer Science</div>
           <div class="timeline-desc">Enrolled in BSCS program; mastered OOP, Database Systems, Web Development, and Java Fundamentals (Oracle Academy certified).</div>
@@ -1227,7 +1213,7 @@
 
       <div class="timeline-item">
         <div class="timeline-icon">2</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">MARCH 2024 & MARCH 2025</div>
           <div class="timeline-title">2x Tagisan ng Talino — ThinkQuest Awards</div>
           <div class="timeline-desc">Competed in STI College San Jose's annual Tagisan ng Talino academic competition, securing 3rd place in 2024 and crowning Champion (1st Place) in 2025.</div>
@@ -1237,7 +1223,7 @@
 
       <div class="timeline-item">
         <div class="timeline-icon">3</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">SEPTEMBER 2025</div>
           <div class="timeline-title">Cisco Cybersecurity Certification</div>
           <div class="timeline-desc">Earned official Introduction to Cybersecurity certification from Cisco Networking Academy, applying secure authentication principles to web applications.</div>
@@ -1247,7 +1233,7 @@
 
       <div class="timeline-item">
         <div class="timeline-icon">4</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">FEB – MARCH 2026 (342 HOURS)</div>
           <div class="timeline-title">DepEd San Jose Division Office OJT</div>
           <div class="timeline-desc">Owned 100% of frontend development for the DepEd HRIS Approval System. Digitalized leave requests for ICT staff & teachers. Earned 98/100 performance rating.</div>
@@ -1257,7 +1243,7 @@
 
       <div class="timeline-item">
         <div class="timeline-icon">5</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">EARLY 2026</div>
           <div class="timeline-title">Boiyet's Gym Management Thesis Defense</div>
           <div class="timeline-desc">Solo-built and defended a commercial gym management platform featuring QR attendance scanning, revenue analytics, and member fitness tracking.</div>
@@ -1267,7 +1253,7 @@
 
       <div class="timeline-item">
         <div class="timeline-icon">6</div>
-        <div class="timeline-content" onclick="playAudioClick()">
+        <div class="timeline-content">
           <div class="timeline-date">JULY 31, 2026</div>
           <div class="timeline-title">Graduation & Open to Junior Developer Roles</div>
           <div class="timeline-desc">Official BS Computer Science graduation. Ready to contribute production-grade frontend & full-stack code to an engineering team.</div>
@@ -1287,7 +1273,7 @@
       <article class="ticket" id="ticket-hris" data-skills="react,inertia,tailwind,laravel,javascript">
         <div class="ticket-head">
           <span class="ticket-id">TICKET #HRIS-2026-01</span>
-          <span class="stamp deployed">● DEPLOYED</span>
+          <span class="stamp" style="color:#f59e0b;border-color:#f59e0b;">🔒 PRIVATE DEPLOYMENT</span>
         </div>
         <div class="ticket-body">
           <div class="ticket-top">
@@ -1295,6 +1281,7 @@
             <span class="role-tag">FRONTEND OWNER</span>
           </div>
           <p class="ticket-desc">A three-role approval workflow (Applicant → Admin → Approver) built for DepEd San Jose City's ICT Department, replacing a paper-based CS Form No. 6 process. Includes PDF export, digital signature capture, and a custom AI chat agent for applicant support.</p>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:-8px;margin-bottom:12px;">⚠️ Deployed on DepEd San Jose City internal servers — not publicly accessible due to government data confidentiality.</p>
           <!-- Project Screenshot -->
           <div class="project-screenshot">
             <img src="hris-mockup.png" alt="DepEd HRIS Approval System dashboard UI mockup" loading="lazy">
@@ -1398,7 +1385,10 @@
               <span class="metric">Solo-built, <b>defended</b></span>
               <span class="metric">Real client, <b>in use</b></span>
             </div>
-            <span class="ticket-link" onclick="openProjectModal('gym')">View Complete Details ↗</span>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <span class="ticket-link" onclick="openProjectModal('gym')">View Complete Details ↗</span>
+              <a href="#" class="ticket-link" style="opacity:0.45;cursor:not-allowed;pointer-events:none;" title="Live demo deployment in progress">🔗 Live Demo — Coming Soon</a>
+            </div>
           </div>
         </div>
       </article>
@@ -1511,10 +1501,10 @@
       <p>Open to junior developer roles — frontend, full-stack, or wherever a team needs someone who ships production-ready code.</p>
       <div class="contact-links">
         <button type="button" class="btn btn-primary" onclick="copyEmail()" title="Click to copy email address">kurtfarinas2022@gmail.com 📋</button>
-        <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary" onclick="playAudioClick()">Open in Mail ✉️</a>
-        <a href="https://linkedin.com/in/kurtfarinas" class="btn btn-secondary" target="_blank" rel="noopener" onclick="playAudioClick()">LinkedIn ↗</a>
-        <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener" onclick="playAudioClick()">GitHub ↗</a>
-        <a href="resume.pdf" class="btn btn-secondary" download onclick="playAudioClick()">Download CV ↓</a>
+        <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary">Open Email 📧</a>
+        <a href="https://www.linkedin.com/in/kurt-vincent-fari%C3%B1as-315ab1367" class="btn btn-secondary" target="_blank" rel="noopener">LinkedIn 🔗</a>
+        <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener">GitHub 💻</a>
+        <a href="resume.pdf" class="btn btn-secondary" download>Download CV 📄</a>
       </div>
     </div>
   </div>
@@ -1564,7 +1554,6 @@
   };
 
   function setWorkflowStep(projectId, stepIdx) {
-    playAudioClick();
     const card = document.getElementById(`ticket-${projectId}`);
     if (!card) return;
     const steps = card.querySelectorAll('.workflow-step');
@@ -1619,56 +1608,7 @@
     });
   });
 
-  // Web Audio Synthesizer Feedback
-  let audioEnabled = true;
-  let audioCtx = null;
-  function getAudioCtx() {
-    if (!audioCtx && typeof AudioContext !== 'undefined') {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    return audioCtx;
-  }
-  function toggleAudio() {
-    audioEnabled = !audioEnabled;
-    document.getElementById('audioToggle').textContent = audioEnabled ? '🔊 FX' : '🔇 FX';
-    spawnToast('AUDIO SETTING', audioEnabled ? 'Web Audio sound effects enabled.' : 'Sound effects muted.');
-  }
-  function playAudioClick() {
-    if (!audioEnabled) return;
-    try {
-      const ctx = getAudioCtx();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.04);
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.04);
-    } catch(e) {}
-  }
-  function playAudioChime() {
-    if (!audioEnabled) return;
-    try {
-      const ctx = getAudioCtx();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-      osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.06); // E5
-      gain.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.2);
-    } catch(e) {}
-  }
+
 
   // Theme Switcher
   function setThemeAccent(themeName) {
@@ -1676,13 +1616,11 @@
     document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
     const activeDot = document.querySelector(`.theme-dot.${themeName}`);
     if (activeDot) activeDot.classList.add('active');
-    playAudioChime();
     spawnToast('THEME UPDATED', `Switched theme accent to ${themeName.toUpperCase()}`);
   }
 
   // Skill Cross-Highlighting
   function highlightSkill(skillName) {
-    playAudioClick();
     const tickets = document.querySelectorAll('.ticket');
     let foundCount = 0;
     tickets.forEach(ticket => {
@@ -1760,7 +1698,6 @@
   };
 
   function openProjectModal(projectId) {
-    playAudioClick();
     const data = projectDetails[projectId];
     if (!data) return;
     document.getElementById('modalBadge').textContent = data.badge;
@@ -1778,100 +1715,10 @@
 
   function closeProjectModal(e) {
     if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
-    playAudioClick();
     document.getElementById('projectModal').classList.remove('active');
   }
 
-  // ---------- WEB AUDIO API SYNTHESIZER SOUND ENGINE ----------
-  let audioCtx = null;
-  let audioEnabled = false;
 
-  function initAudio() {
-    if (!audioCtx) {
-      const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtxClass) audioCtx = new AudioCtxClass();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  }
-
-  function toggleAudio() {
-    initAudio();
-    audioEnabled = !audioEnabled;
-    const btn = document.getElementById('audioToggle');
-    if (btn) {
-      if (audioEnabled) {
-        btn.innerHTML = '🔊 FX ON';
-        btn.classList.add('active');
-        playAudioChime();
-        spawnToast('AUDIO ENABLED', 'Interactive UI sound effects activated.');
-      } else {
-        btn.innerHTML = '🔇 FX OFF';
-        btn.classList.remove('active');
-      }
-    }
-  }
-
-  function playAudioClick() {
-    if (!audioEnabled || !audioCtx) return;
-    try {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.04);
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.04);
-    } catch(e){}
-  }
-
-  function playAudioChime() {
-    if (!audioEnabled || !audioCtx) return;
-    try {
-      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
-      notes.forEach((freq, idx) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.06);
-        gain.gain.setValueAtTime(0.06, audioCtx.currentTime + idx * 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.06 + 0.15);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(audioCtx.currentTime + idx * 0.06);
-        osc.stop(audioCtx.currentTime + idx * 0.06 + 0.15);
-      });
-    } catch(e){}
-  }
-
-  function playAudioTone(freq, dur = 0.06) {
-    if (!audioEnabled || !audioCtx) return;
-    try {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + dur);
-    } catch(e){}
-  }
-
-  function setThemeAccent(theme) {
-    document.body.setAttribute('data-theme', theme);
-    document.querySelectorAll('.theme-dot').forEach(dot => {
-      dot.classList.toggle('active', dot.classList.contains(theme));
-    });
-    playAudioChime();
-  }
 
   // 3D Parallax tilt effect for hero showcase card
   const showcaseContainer = document.getElementById('heroShowcase');
@@ -1989,7 +1836,6 @@
   function runCommand(raw) {
     const cmd = raw.trim();
     if (!cmd) return;
-    playAudioClick();
     printCmd(cmd);
     cmdHistory.push(cmd);
     historyIdx = cmdHistory.length;
@@ -2035,7 +1881,6 @@
 
   // Copy email helper
   function copyEmail() {
-    playAudioChime();
     const email = 'kurtfarinas2022@gmail.com';
     navigator.clipboard.writeText(email).then(() => {
       spawnToast('EMAIL COPIED', 'kurtfarinas2022@gmail.com copied to clipboard!');
@@ -2047,7 +1892,6 @@
   // Achievement toasts
   const toastLayer = document.getElementById('toastLayer');
   function spawnToast(title, body) {
-    playAudioChime();
     const t = document.createElement('div');
     t.className = 'toast';
     t.innerHTML = `
@@ -2123,7 +1967,6 @@
     const isOpen = menu.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', isOpen);
-    playAudioClick();
   }
   function closeMenu() {
     const menu = document.getElementById('mobileMenu');
