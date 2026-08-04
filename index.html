@@ -2064,6 +2064,151 @@
       opacity: 1;
     }
 
+    /* ---------- SCREENSHOT CAROUSEL ---------- */
+    .screenshot-carousel {
+      margin: 18px 0 0;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .screenshot-carousel:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 8px 28px -8px var(--violet-glow);
+    }
+
+    .carousel-tabs {
+      display: flex;
+      background: rgba(14, 14, 22, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .carousel-tab {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-faint);
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      padding: 9px 0;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      flex: 1;
+      text-align: center;
+    }
+
+    .carousel-tab:last-child {
+      border-right: none;
+    }
+
+    .carousel-tab:hover {
+      color: var(--text);
+      background: rgba(139, 124, 246, 0.07);
+    }
+
+    .carousel-tab.active {
+      color: var(--violet-light);
+      background: rgba(139, 124, 246, 0.13);
+    }
+
+    .carousel-frame {
+      position: relative;
+    }
+
+    .screenshot-carousel .project-screenshot {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      max-height: 260px;
+      transition: none;
+    }
+
+    .screenshot-carousel .project-screenshot:hover {
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .screenshot-carousel .project-screenshot img {
+      height: 260px;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(7, 7, 11, 0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: all 0.2s;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+
+    .carousel-arrow:hover {
+      border-color: var(--violet-light);
+      color: var(--violet-light);
+      box-shadow: 0 0 12px var(--violet-glow);
+    }
+
+    .carousel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: rgba(14, 14, 22, 0.9);
+      border-top: 1px solid var(--border);
+    }
+
+    .carousel-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .carousel-dot.active {
+      background: var(--violet-light);
+      box-shadow: 0 0 8px var(--violet-glow);
+      width: 18px;
+      border-radius: 3px;
+    }
+
     /* ---------- SKILL PROFICIENCY ---------- */
     .skill-legend {
       display: flex;
@@ -2545,12 +2690,33 @@
                 signature capture, and a custom AI chat agent for applicant support.</p>
               <p style="font-size:12px;color:var(--text-muted);margin-top:-8px;margin-bottom:12px;">⚠️ Deployed on DepEd
                 San Jose City internal servers — not publicly accessible due to government data confidentiality.</p>
-              <!-- Project Screenshot -->
-              <div class="project-screenshot" role="button" tabindex="0"
-                onclick="openScreenshotModal('hris-mockup.png', 'DepEd HRIS Approval System — Dashboard UI')"
-                onkeydown="if(event.key==='Enter')openScreenshotModal('hris-mockup.png','DepEd HRIS Approval System — Dashboard UI')">
-                <img src="hris-mockup.png" alt="DepEd HRIS Approval System dashboard UI mockup" loading="lazy">
-                <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
+              <!-- Project Screenshots — 3 Roles -->
+              <div class="screenshot-carousel" data-project="hris">
+                <div class="carousel-tabs">
+                  <button class="carousel-tab active" onclick="setCarouselSlide('hris', 0)">Admin</button>
+                  <button class="carousel-tab" onclick="setCarouselSlide('hris', 1)">Approver</button>
+                  <button class="carousel-tab" onclick="setCarouselSlide('hris', 2)">Applicant</button>
+                </div>
+                <div class="carousel-frame">
+                  <div class="project-screenshot" role="button" tabindex="0"
+                    onclick="openCurrentCarouselScreenshot('hris')"
+                    onkeydown="if(event.key==='Enter')openCurrentCarouselScreenshot('hris')">
+                    <img id="hris-carousel-img" src="hris-admin.png"
+                      onerror="this.onerror=null;this.src='hris-mockup.png'"
+                      alt="DepEd HRIS Admin Dashboard" loading="lazy">
+                    <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
+                  </div>
+                  <button class="carousel-arrow carousel-prev" onclick="event.stopPropagation();prevCarouselSlide('hris')" aria-label="Previous">&#8249;</button>
+                  <button class="carousel-arrow carousel-next" onclick="event.stopPropagation();nextCarouselSlide('hris')" aria-label="Next">&#8250;</button>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-label" id="hris-carousel-label">Admin Dashboard</span>
+                  <div class="carousel-dots">
+                    <button class="carousel-dot active" onclick="setCarouselSlide('hris', 0)" aria-label="Admin"></button>
+                    <button class="carousel-dot" onclick="setCarouselSlide('hris', 1)" aria-label="Approver"></button>
+                    <button class="carousel-dot" onclick="setCarouselSlide('hris', 2)" aria-label="Applicant"></button>
+                  </div>
+                </div>
               </div>
 
               <!-- Interactive Workflow Pipeline -->
@@ -2610,12 +2776,33 @@
               <p class="ticket-desc">My thesis project: a full gym management platform built from scratch for a real
                 client. QR-code attendance replaced a paper sign-in sheet, member records and fitness/nutrition tracking
                 live in one place, and the owner gets a revenue dashboard instead of a notebook.</p>
-              <!-- Project Screenshot -->
-              <div class="project-screenshot" role="button" tabindex="0"
-                onclick="openScreenshotModal('gym-mockup.png', 'Boiyet\'s Gym Management System — Dashboard UI')"
-                onkeydown="if(event.key==='Enter')openScreenshotModal('gym-mockup.png','Boiyet\'s Gym Management System — Dashboard UI')">
-                <img src="gym-mockup.png" alt="Boiyet's Gym Management System dashboard UI mockup" loading="lazy">
-                <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
+              <!-- Project Screenshots — 3 Roles -->
+              <div class="screenshot-carousel" data-project="gym">
+                <div class="carousel-tabs">
+                  <button class="carousel-tab active" onclick="setCarouselSlide('gym', 0)">Admin</button>
+                  <button class="carousel-tab" onclick="setCarouselSlide('gym', 1)">Trainer</button>
+                  <button class="carousel-tab" onclick="setCarouselSlide('gym', 2)">Client</button>
+                </div>
+                <div class="carousel-frame">
+                  <div class="project-screenshot" role="button" tabindex="0"
+                    onclick="openCurrentCarouselScreenshot('gym')"
+                    onkeydown="if(event.key==='Enter')openCurrentCarouselScreenshot('gym')">
+                    <img id="gym-carousel-img" src="gym-admin.png"
+                      onerror="this.onerror=null;this.src='gym-mockup.png'"
+                      alt="Gym Admin Dashboard" loading="lazy">
+                    <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
+                  </div>
+                  <button class="carousel-arrow carousel-prev" onclick="event.stopPropagation();prevCarouselSlide('gym')" aria-label="Previous">&#8249;</button>
+                  <button class="carousel-arrow carousel-next" onclick="event.stopPropagation();nextCarouselSlide('gym')" aria-label="Next">&#8250;</button>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-label" id="gym-carousel-label">Admin Dashboard</span>
+                  <div class="carousel-dots">
+                    <button class="carousel-dot active" onclick="setCarouselSlide('gym', 0)" aria-label="Admin"></button>
+                    <button class="carousel-dot" onclick="setCarouselSlide('gym', 1)" aria-label="Trainer"></button>
+                    <button class="carousel-dot" onclick="setCarouselSlide('gym', 2)" aria-label="Client"></button>
+                  </div>
+                </div>
               </div>
 
               <!-- Interactive Workflow Pipeline -->
@@ -3066,6 +3253,60 @@
         document.getElementById('projectModal').classList.remove('active');
       }
     });
+
+    // Screenshot Carousel
+    const carouselData = {
+      hris: {
+        current: 0,
+        slides: [
+          { src: 'hris-admin.png',     label: 'Admin Dashboard' },
+          { src: 'hris-approver.png',  label: 'Approver Interface' },
+          { src: 'hris-applicant.png', label: 'Applicant Form' }
+        ]
+      },
+      gym: {
+        current: 0,
+        slides: [
+          { src: 'gym-admin.png',   label: 'Admin Dashboard' },
+          { src: 'gym-trainer.png', label: 'Trainer Panel' },
+          { src: 'gym-client.png',  label: 'Client Portal' }
+        ]
+      }
+    };
+
+    function setCarouselSlide(projectId, idx) {
+      const data = carouselData[projectId];
+      if (!data) return;
+      data.current = idx;
+      const slide = data.slides[idx];
+
+      const img = document.getElementById(`${projectId}-carousel-img`);
+      if (img) { img.src = slide.src; img.onerror = () => { img.onerror = null; img.src = `${projectId}-mockup.png`; }; }
+
+      const lbl = document.getElementById(`${projectId}-carousel-label`);
+      if (lbl) lbl.textContent = slide.label;
+
+      document.querySelectorAll(`[data-project="${projectId}"] .carousel-tab`)
+        .forEach((t, i) => t.classList.toggle('active', i === idx));
+      document.querySelectorAll(`[data-project="${projectId}"] .carousel-dot`)
+        .forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    function prevCarouselSlide(projectId) {
+      const data = carouselData[projectId];
+      setCarouselSlide(projectId, (data.current - 1 + data.slides.length) % data.slides.length);
+    }
+
+    function nextCarouselSlide(projectId) {
+      const data = carouselData[projectId];
+      setCarouselSlide(projectId, (data.current + 1) % data.slides.length);
+    }
+
+    function openCurrentCarouselScreenshot(projectId) {
+      const data = carouselData[projectId];
+      const slide = data.slides[data.current];
+      openScreenshotModal(slide.src, slide.label + ' — ' + (projectId === 'hris' ? 'DepEd HRIS' : "Boiyet's Gym"));
+    }
 
 
 
