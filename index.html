@@ -1752,6 +1752,70 @@
       color: var(--text);
     }
 
+    /* ---------- SCREENSHOT LIGHTBOX ---------- */
+    .screenshot-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: zoom-out;
+    }
+
+    .screenshot-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .screenshot-modal-content {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      cursor: default;
+    }
+
+    .screenshot-modal-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      display: block;
+    }
+
+    .screenshot-modal-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 22px;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .screenshot-modal-close:hover {
+      color: #fff;
+    }
+
+    .screenshot-modal-caption {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      margin-top: 14px;
+      letter-spacing: 0.04em;
+    }
+
     .modal-badge {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -1953,13 +2017,21 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
-      max-height: 220px;
+      max-height: 280px;
       background: var(--surface-solid);
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-screenshot:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 8px 28px -8px var(--violet-glow);
     }
 
     .project-screenshot img {
       width: 100%;
-      height: 220px;
+      height: 280px;
       object-fit: cover;
       object-position: top;
       display: block;
@@ -1968,6 +2040,28 @@
 
     .project-screenshot:hover img {
       transform: scale(1.02);
+    }
+
+    .project-screenshot-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: #fff;
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+
+    .project-screenshot:hover .project-screenshot-overlay {
+      opacity: 1;
     }
 
     /* ---------- SKILL PROFICIENCY ---------- */
@@ -2452,8 +2546,11 @@
               <p style="font-size:12px;color:var(--text-muted);margin-top:-8px;margin-bottom:12px;">⚠️ Deployed on DepEd
                 San Jose City internal servers — not publicly accessible due to government data confidentiality.</p>
               <!-- Project Screenshot -->
-              <div class="project-screenshot">
+              <div class="project-screenshot" role="button" tabindex="0"
+                onclick="openScreenshotModal('hris-mockup.png', 'DepEd HRIS Approval System — Dashboard UI')"
+                onkeydown="if(event.key==='Enter')openScreenshotModal('hris-mockup.png','DepEd HRIS Approval System — Dashboard UI')">
                 <img src="hris-mockup.png" alt="DepEd HRIS Approval System dashboard UI mockup" loading="lazy">
+                <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
               </div>
 
               <!-- Interactive Workflow Pipeline -->
@@ -2514,8 +2611,11 @@
                 client. QR-code attendance replaced a paper sign-in sheet, member records and fitness/nutrition tracking
                 live in one place, and the owner gets a revenue dashboard instead of a notebook.</p>
               <!-- Project Screenshot -->
-              <div class="project-screenshot">
+              <div class="project-screenshot" role="button" tabindex="0"
+                onclick="openScreenshotModal('gym-mockup.png', 'Boiyet\'s Gym Management System — Dashboard UI')"
+                onkeydown="if(event.key==='Enter')openScreenshotModal('gym-mockup.png','Boiyet\'s Gym Management System — Dashboard UI')">
                 <img src="gym-mockup.png" alt="Boiyet's Gym Management System dashboard UI mockup" loading="lazy">
+                <div class="project-screenshot-overlay">🔍 View Full Screenshot</div>
               </div>
 
               <!-- Interactive Workflow Pipeline -->
@@ -2753,6 +2853,15 @@
     </div>
   </div>
 
+  <!-- Screenshot Lightbox -->
+  <div id="screenshotModal" class="screenshot-modal-overlay" onclick="closeScreenshotModal()">
+    <div class="screenshot-modal-content" onclick="event.stopPropagation()">
+      <button type="button" class="screenshot-modal-close" onclick="closeScreenshotModal()">&#x2715;</button>
+      <img id="screenshotModalImg" class="screenshot-modal-img" src="" alt="">
+      <p id="screenshotModalCaption" class="screenshot-modal-caption"></p>
+    </div>
+  </div>
+
   <div id="toastLayer"></div>
 
   <script>
@@ -2936,6 +3045,27 @@
       if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
       document.getElementById('projectModal').classList.remove('active');
     }
+
+    // Screenshot Lightbox
+    function openScreenshotModal(src, caption) {
+      document.getElementById('screenshotModalImg').src = src;
+      document.getElementById('screenshotModalCaption').textContent = caption;
+      document.getElementById('screenshotModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeScreenshotModal() {
+      document.getElementById('screenshotModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close any open modal on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeScreenshotModal();
+        document.getElementById('projectModal').classList.remove('active');
+      }
+    });
 
 
 
