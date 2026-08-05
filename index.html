@@ -117,10 +117,10 @@
           </div>
 
           <div class="cta-row" id="heroCta">
-            <a href="#projects" class="btn btn-primary">View Projects 🚀</a>
-            <button type="button" class="btn btn-secondary" onclick="openResumeModal()">Preview CV 👁️</button>
-            <a href="resume.pdf" class="btn btn-secondary" download>Download CV 📄</a>
-            <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me ✉️</button>
+            <a href="#projects" class="btn btn-primary">View Projects →</a>
+            <button type="button" class="btn btn-secondary" onclick="openResumeModal()">Preview CV</button>
+            <a href="resume.pdf" class="btn btn-secondary" download>Download CV</a>
+            <button type="button" class="btn btn-secondary" id="emailBtn" onclick="copyEmail()">Email Me</button>
           </div>
 
           <div class="terminal" id="terminal">
@@ -595,7 +595,7 @@
             </div>
           </div>
           <div class="skill-group">
-            <h4>⚡ Currently Learning</h4>
+            <h4>In Progress / Expanding</h4>
             <div class="skill-tags">
               <span class="has-prof">TypeScript<em class="prof-dot prof-learn" title="Learning"></em></span>
               <span class="has-prof">Next.js<em class="prof-dot prof-learn" title="Learning"></em></span>
@@ -703,7 +703,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary form-submit-btn" id="contactSubmitBtn">
-              <span>Send Message 🚀</span>
+              <span>Send Message</span>
             </button>
           </form>
 
@@ -711,12 +711,12 @@
 
           <div class="contact-links">
             <button type="button" class="btn btn-secondary" onclick="copyEmail()"
-              title="Click to copy email address">kurtfarinas2022@gmail.com 📋</button>
-            <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary">Open Email 📧</a>
+              title="Click to copy email address">kurtfarinas2022@gmail.com</button>
+            <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary">Open Email</a>
             <a href="https://www.linkedin.com/in/kurt-vincent-fari%C3%B1as-315ab1367" class="btn btn-secondary"
-              target="_blank" rel="noopener">LinkedIn 🔗</a>
-            <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener">GitHub 💻</a>
-            <a href="resume.pdf" class="btn btn-secondary" download>Download CV 📄</a>
+              target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/kosaki20" class="btn btn-secondary" target="_blank" rel="noopener">GitHub</a>
+            <a href="resume.pdf" class="btn btn-secondary" download>Download CV</a>
           </div>
         </div>
       </div>
@@ -776,7 +776,13 @@
           <h3 class="modal-title" style="margin-bottom:0;font-size:22px;">Kurt Fariñas — Resume</h3>
         </div>
         <div class="resume-modal-actions">
-          <a href="resume.pdf" download class="btn btn-primary btn-sm">Download PDF 📄</a>
+      <div class="resume-modal-header">
+        <div>
+          <span class="modal-badge">CURRICULUM VITAE PREVIEW</span>
+          <h3 class="modal-title" style="margin-bottom:0;font-size:22px;">Kurt Fariñas — Resume</h3>
+        </div>
+        <div class="resume-modal-actions">
+          <a href="resume.pdf" download class="btn btn-primary btn-sm">Download PDF</a>
           <button type="button" class="modal-close" style="position:static;" onclick="closeResumeModal()">✕</button>
         </div>
       </div>
@@ -800,9 +806,11 @@
   <!-- Kurt AI Floating Chat Widget -->
   <div class="chat-widget-wrapper">
     <button type="button" id="chatWidgetLauncher" class="chat-launcher" aria-label="Open Kurt AI Assistant">
-      <span class="chat-launcher-icon">💬</span>
-      <span class="chat-launcher-text">Ask Kurt AI</span>
-      <span id="chatUnreadBadge" class="chat-unread-badge">AI</span>
+      <svg class="chat-launcher-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span class="chat-launcher-text">Kurt AI Assistant</span>
+      <span id="chatUnreadBadge" class="chat-unread-badge">BOT</span>
     </button>
 
     <div id="chatWidgetPanel" class="chat-panel">
@@ -811,31 +819,31 @@
           <div class="chat-avatar">KF</div>
           <div>
             <div class="chat-title">Kurt AI Assistant</div>
-            <div class="chat-status"><span class="status-dot"></span> ONLINE • System Builder Bot</div>
+            <div class="chat-status"><span class="status-dot"></span> ONLINE • System Knowledge Bot</div>
           </div>
         </div>
         <button type="button" id="chatWidgetClose" class="chat-close-btn" aria-label="Close Assistant">✕</button>
       </div>
 
       <div class="chat-prompts">
-        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Tell me about your DepEd OJT experience')">✨ DepEd OJT</button>
-        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('How does the Gym thesis system work?')">🏋️ Gym Thesis</button>
-        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('What is your primary tech stack?')">🚀 Tech Stack</button>
-        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Are you open to Junior Developer roles?')">💼 Hire Kurt</button>
-        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Tell me about your academic awards')">🎓 Awards</button>
+        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Tell me about your DepEd OJT experience')">DepEd HRIS</button>
+        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('How does the Gym thesis system work?')">Gym Platform</button>
+        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('What is your primary tech stack?')">Primary Stack</button>
+        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Are you open to Junior Developer roles?')">Work Availability</button>
+        <button type="button" class="chat-prompt-chip" onclick="sendQuickPrompt('Tell me about your academic awards')">Credentials</button>
       </div>
 
       <div id="chatMessages" class="chat-messages">
         <div class="chat-msg msg-bot">
           <div class="msg-avatar">KF</div>
           <div class="msg-text">
-            Hi! I'm <strong>Kurt AI</strong>, trained on Kurt Fariñas' portfolio and engineering background. Ask me anything about his <strong>DepEd OJT, Gym thesis project, tech stack, or hiring availability!</strong>
+            Welcome. I am <strong>Kurt AI</strong>, an interactive knowledge assistant. You can inquire about Kurt's <strong>DepEd HRIS government project, Gym thesis platform, primary tech stack, academic credentials, or full-time availability.</strong>
           </div>
         </div>
       </div>
 
       <form id="chatWidgetForm" class="chat-input-form">
-        <input type="text" id="chatInput" placeholder="Ask about OJT, stack, thesis..." autocomplete="off" spellcheck="false">
+        <input type="text" id="chatInput" placeholder="Ask about system architecture, OJT, stack..." autocomplete="off" spellcheck="false">
         <button type="submit" class="chat-send-btn" aria-label="Send query">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="22" y1="2" x2="11" y2="13"></line>

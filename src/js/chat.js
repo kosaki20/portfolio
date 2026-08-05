@@ -1,60 +1,79 @@
 /* ========================================
-   KURT AI — Interactive Chat Assistant Module
+   KURT AI — Professional Interactive Assistant
    ======================================== */
 
 import { spawnToast } from './utils.js';
 
-// Pre-defined knowledge base & responses for Kurt's portfolio assistant
+// Enhanced knowledge base with weighted scoring & follow-up suggestion chips
 const botKnowledge = [
   {
-    keywords: ['ojt', 'deped', 'hris', 'government', 'leave', 'form 6', 'rating', 'hours'],
-    response: "During my 342-hour OJT at DepEd San Jose City Division Office, I owned 100% of frontend development for their HRIS Approval System using React 19, Inertia.js, and Tailwind CSS v4. It digitalized paper CS Form No. 6 leave requests across a 3-role approval pipeline (Applicant → Admin → Approver) and earned me a 98/100 performance rating!"
+    category: 'hris',
+    keywords: ['ojt', 'deped', 'hris', 'government', 'leave', 'form 6', 'cs form', 'approval', 'rating', 'hours', 'department of education'],
+    response: "During my 342-hour internship at the Department of Education (DepEd San Jose City Division Office), I served as the **lead frontend developer** for the DepEd HRIS Approval System. I engineered a three-role workflow (Applicant → Admin → Approver) using React 19, Inertia.js, and Tailwind CSS v4, replacing a paper-based leave application process and earning a **98/100 performance evaluation**.",
+    followUps: ["Tell me about the Gym thesis system", "What is your primary tech stack?", "Are you open to full-time roles?"]
   },
   {
-    keywords: ['gym', 'thesis', 'boiyet', 'qr', 'scanner', 'attendance', 'php', 'mysql'],
-    response: "Boiyet's Fitness Gym Management System was my solo-built and defended BSCS thesis project! Built with custom PHP, MySQL, AJAX, and JS, it replaced paper sign-in sheets with instant camera QR-code check-ins and gave the owner real-time revenue analytics."
+    category: 'gym',
+    keywords: ['gym', 'thesis', 'boiyet', 'qr', 'scanner', 'attendance', 'php', 'mysql', 'fullstack', 'full-stack', 'client', 'revenue'],
+    response: "For my Computer Science thesis, I solo-engineered a commercial **Gym Management & Attendance System** for Boiyet's Fitness Gym. Built with custom PHP, MySQL, and AJAX, the platform replaced manual sign-in ledgers with real-time camera QR check-ins, automated membership expiration alerts, and provided an executive revenue analytics dashboard.",
+    followUps: ["What was your role in DepEd HRIS?", "What technologies do you use?", "How can I contact Kurt?"]
   },
   {
-    keywords: ['stack', 'tech', 'languages', 'skills', 'frameworks', 'laravel', 'react', 'tailwind'],
-    response: "My primary engineering stack includes **React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, and MySQL**. I am also certified in Java (Oracle Academy) and Cybersecurity (Cisco Networking Academy), and currently expanding into TypeScript & Next.js."
+    category: 'stack',
+    keywords: ['stack', 'tech', 'languages', 'frameworks', 'laravel', 'react', 'tailwind', 'php', 'mysql', 'javascript', 'java', 'cisco', 'css'],
+    response: "Kurt's core production stack features **React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, and MySQL**. He holds official certifications in Java Fundamentals (Oracle Academy) and Cybersecurity (Cisco Networking Academy), and is currently expanding into TypeScript, Next.js, and Docker.",
+    followUps: ["Tell me about his DepEd OJT work", "Has he defended a thesis?", "View work availability"]
   },
   {
-    keywords: ['hire', 'available', 'job', 'role', 'work', 'junior', 'remote', 'fulltime', 'position'],
-    response: "Yes! I am officially open to **Junior Developer roles** (Frontend, Full-Stack, or PHP/Laravel/React engineering). I ship clean, production-ready code built for non-technical end users. You can reach out via the contact form or email `kurtfarinas2022@gmail.com`!"
+    category: 'hiring',
+    keywords: ['hire', 'available', 'job', 'role', 'work', 'junior', 'remote', 'fulltime', 'full-time', 'position', 'relocate', 'onsite', 'start'],
+    response: "Kurt is a BS Computer Science graduate actively seeking **Junior Developer seats (Frontend, Full-Stack, or PHP/Laravel/React development)**. He is ready to contribute production-ready code immediately and is open to remote, hybrid, or onsite arrangements.",
+    followUps: ["How can I contact Kurt?", "Download Kurt's CV", "What is his tech stack?"]
   },
   {
-    keywords: ['education', 'college', 'sti', 'degree', 'awards', 'thinkquest', 'tagisan'],
-    response: "I graduated with a BS in Computer Science from **STI College San Jose** (Class of 2026). During college, I competed in Tagisan ng Talino ThinkQuest academic competitions — placing 3rd in 2024 and crowning Champion (1st Place) in 2025!"
+    category: 'education',
+    keywords: ['education', 'college', 'sti', 'degree', 'awards', 'thinkquest', 'tagisan', 'gpa', 'certifications', 'cisco', 'oracle'],
+    response: "Kurt earned his Bachelor of Science in Computer Science from **STI College San Jose** (Class of 2026). He won 1st Place (Champion) in the 2025 STI ThinkQuest academic competition and 3rd Place in 2024, alongside earning Cisco Cybersecurity and Oracle Java certifications.",
+    followUps: ["What systems has he built?", "View work availability", "Get contact information"]
   },
   {
-    keywords: ['minecraft', 'valorant', 'games', 'hobby', 'hobbies', 'music', 'opm', 'server'],
-    response: "Off the clock: I play Valorant, run a self-hosted Paper Minecraft server for my friends (tunneled via playit.gg), and keep OPM acoustic playlists on loop while coding!"
+    category: 'contact',
+    keywords: ['contact', 'email', 'linkedin', 'github', 'reach', 'message', 'phone'],
+    response: "You can reach Kurt directly via email at **kurtfarinas2022@gmail.com**, connect on LinkedIn at **linkedin.com/in/kurt-vincent-fariñas**, or review his source code on GitHub at **github.com/kosaki20**.",
+    followUps: ["Are you open to full-time roles?", "Tell me about his tech stack", "Download CV"]
   },
   {
-    keywords: ['contact', 'email', 'linkedin', 'github', 'reach'],
-    response: "You can email me at **kurtfarinas2022@gmail.com**, connect on LinkedIn (Kurt Vincent Fariñas), or check out my code on GitHub (`@kosaki20`)."
+    category: 'architecture',
+    keywords: ['architecture', 'pattern', 'inertia', 'api', 'backend', 'frontend', 'design', 'database', 'schema'],
+    response: "Kurt specializes in **Inertia.js monoliths and RESTful API integrations**, combining the rapid developer velocity of Laravel backend controllers with component-driven React interfaces. He prioritizes responsive UI design, defensive input validation, and relational MySQL schema normalization.",
+    followUps: ["What was his DepEd HRIS project?", "What is his thesis project?", "View primary tech stack"]
   }
 ];
 
-const defaultFallback = "That's a great question! I'm trained on Kurt's portfolio details. You can ask about his **DepEd OJT experience, Gym thesis system, tech stack, availability to hire, or education** — or drop him a direct message using the contact form below!";
+const fallbackResponse = {
+  response: "I can provide details regarding Kurt's engineering background. You can ask about his **DepEd HRIS government system, Boiyet's Gym thesis platform, primary tech stack, academic background, or work availability**.",
+  followUps: ["DepEd HRIS System", "Gym Management Platform", "Primary Tech Stack", "Work Availability"]
+};
 
-function findBestResponse(userText) {
+function scoreKnowledgeMatch(userText) {
   const text = userText.toLowerCase();
-  let bestMatch = null;
   let maxScore = 0;
+  let bestMatch = null;
 
   botKnowledge.forEach(item => {
     let score = 0;
     item.keywords.forEach(kw => {
-      if (text.includes(kw)) score += 1;
+      if (text.includes(kw)) {
+        score += kw.length > 4 ? 2 : 1; // Give extra weight to longer, specific technical keywords
+      }
     });
     if (score > maxScore) {
       maxScore = score;
-      bestMatch = item.response;
+      bestMatch = item;
     }
   });
 
-  return bestMatch || defaultFallback;
+  return (maxScore > 0 && bestMatch) ? bestMatch : fallbackResponse;
 }
 
 export function initChatWidget() {
@@ -80,7 +99,7 @@ export function initChatWidget() {
     if (isOpen) {
       if (!hasOpenedBefore) {
         hasOpenedBefore = true;
-        spawnToast('KURT AI ACTIVE', 'Ask any question about Kurt\'s experience or stack!');
+        spawnToast('ASSISTANT READY', 'Ask any question regarding Kurt\'s technical background.');
       }
       setTimeout(() => chatInput?.focus(), 250);
     }
@@ -89,7 +108,7 @@ export function initChatWidget() {
   launcher.addEventListener('click', () => togglePanel());
   closeBtn?.addEventListener('click', () => togglePanel(false));
 
-  function addMessage(sender, text, isHtml = true) {
+  function addMessage(sender, text, isHtml = true, followUps = []) {
     if (!chatMessages) return;
     const msgDiv = document.createElement('div');
     msgDiv.className = `chat-msg ${sender === 'user' ? 'msg-user' : 'msg-bot'}`;
@@ -98,7 +117,17 @@ export function initChatWidget() {
       ? `<div class="msg-avatar">KF</div>`
       : `<div class="msg-avatar user-avatar">YOU</div>`;
 
-    const contentHtml = `<div class="msg-text">${isHtml ? formatMarkdown(text) : escapeHtml(text)}</div>`;
+    let contentHtml = `<div class="msg-text">${isHtml ? formatMarkdown(text) : escapeHtml(text)}`;
+
+    // Add suggested follow-up chips if present
+    if (sender === 'bot' && followUps && followUps.length > 0) {
+      contentHtml += `<div class="msg-followups">`;
+      followUps.forEach(chipText => {
+        contentHtml += `<button type="button" class="chat-followup-chip" onclick="sendQuickPrompt('${escapeHtml(chipText)}')">${escapeHtml(chipText)}</button>`;
+      });
+      contentHtml += `</div>`;
+    }
+    contentHtml += `</div>`;
 
     msgDiv.innerHTML = sender === 'bot' ? avatarHtml + contentHtml : contentHtml + avatarHtml;
     chatMessages.appendChild(msgDiv);
@@ -134,12 +163,12 @@ export function initChatWidget() {
 
     showTypingIndicator();
 
-    const responseText = findBestResponse(query);
-    const delay = Math.min(1200, 400 + query.length * 15);
+    const match = scoreKnowledgeMatch(query);
+    const delay = Math.min(1000, 350 + query.length * 12);
 
     setTimeout(() => {
       removeTypingIndicator();
-      addMessage('bot', responseText, true);
+      addMessage('bot', match.response, true, match.followUps);
     }, delay);
   }
 
@@ -148,7 +177,6 @@ export function initChatWidget() {
     if (chatInput) handleUserSubmit(chatInput.value);
   });
 
-  // Global handler for chip prompt clicks
   window.sendQuickPrompt = function(promptText) {
     if (!isOpen) togglePanel(true);
     handleUserSubmit(promptText);
@@ -156,7 +184,7 @@ export function initChatWidget() {
 }
 
 function escapeHtml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function formatMarkdown(str) {

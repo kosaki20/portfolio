@@ -1682,6 +1682,38 @@
   letter-spacing: 0.04em;
 }
 
+.chat-launcher-svg {
+  flex-shrink: 0;
+}
+
+.msg-followups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(139, 124, 246, 0.12);
+}
+
+.chat-followup-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--violet-light);
+  background: rgba(139, 124, 246, 0.1);
+  border: 1px solid rgba(139, 124, 246, 0.25);
+  padding: 3px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chat-followup-chip:hover {
+  background: rgba(139, 124, 246, 0.25);
+  border-color: var(--violet-light);
+  transform: translateY(-1px);
+}
+
 .chat-panel {
   position: absolute;
   bottom: 58px;
