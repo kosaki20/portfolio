@@ -12,6 +12,7 @@ import { initCarousel } from './js/carousel.js';
 import { initModals } from './js/modals.js';
 import { initSpotlight, initParallax, initBootSequence, initCounters, initScrollReveal, initScrollGlow, initProgressBar } from './js/effects.js';
 import { initNavigation } from './js/navigation.js';
+import { initContactForm } from './js/contact.js';
 
 // Expose copyEmail globally for onclick handlers in HTML
 window.copyEmail = copyEmail;
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
   initModals();
   initNavigation();
+  initContactForm();
 
   // Scroll-driven features
   initCounters();

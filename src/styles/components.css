@@ -1484,3 +1484,107 @@
   gap: 12px;
   justify-content: center;
 }
+
+/* ---------- CONTACT FORM ---------- */
+.contact-form {
+  max-width: 620px;
+  margin: 0 auto 32px;
+  text-align: left;
+  background: rgba(14, 14, 22, 0.75);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 28px 26px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form:focus-within {
+  border-color: var(--border-glow);
+  box-shadow: 0 16px 48px -10px var(--violet-glow);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: rgba(22, 22, 32, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-faint);
+  font-size: 13.5px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--violet-light);
+  box-shadow: 0 0 14px var(--violet-glow);
+  background: rgba(28, 28, 42, 0.95);
+}
+
+.form-submit-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+  padding: 13px 20px;
+  font-size: 14px;
+}
+
+.contact-divider {
+  display: flex;
+  align-items: center;
+  margin: 32px auto 24px;
+  max-width: 520px;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.contact-divider span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  padding: 0 14px;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

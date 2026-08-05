@@ -664,8 +664,43 @@
           <h2>Let's build something.</h2>
           <p>Open to junior developer roles — frontend, full-stack, or wherever a team needs someone who ships
             production-ready code.</p>
+
+          <!-- Contact Form -->
+          <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="ee47990b-6893-4a11-a532-6bfbf6ff0db9">
+            <input type="hidden" name="subject" value="New Portfolio Message from kurt.dev">
+            <input type="checkbox" name="botcheck" class="hidden-bot-check" style="display:none;">
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" name="name" required placeholder="e.g. Alex Morgan">
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Your Email</label>
+                <input type="email" id="contactEmail" name="email" required placeholder="alex@company.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" name="topic" required placeholder="Job Opportunity / Frontend Contract / System Project">
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="4" required placeholder="Tell me about your team, tech stack, or system requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit-btn" id="contactSubmitBtn">
+              <span>Send Message 🚀</span>
+            </button>
+          </form>
+
+          <div class="contact-divider"><span>OR REACH OUT DIRECTLY</span></div>
+
           <div class="contact-links">
-            <button type="button" class="btn btn-primary" onclick="copyEmail()"
+            <button type="button" class="btn btn-secondary" onclick="copyEmail()"
               title="Click to copy email address">kurtfarinas2022@gmail.com 📋</button>
             <a href="mailto:kurtfarinas2022@gmail.com" class="btn btn-secondary">Open Email 📧</a>
             <a href="https://www.linkedin.com/in/kurt-vincent-fari%C3%B1as-315ab1367" class="btn btn-secondary"
