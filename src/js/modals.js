@@ -1,0 +1,90 @@
+/* ========================================
+   MODALS — Project Details + Workflow Steps
+   ======================================== */
+
+import { spawnToast } from './utils.js';
+
+const projectDetails = {
+  hris: {
+    title: "DepEd HRIS Approval System",
+    badge: "DEPLOYED GOVERNMENT SYSTEM (342 HRS OJT)",
+    desc: "An end-to-end digital approval workflow created for the Department of Education (DepEd) San Jose City ICT Division. Replaced paper-based Form CS No. 6 leave and request procedures with real-time multi-role tracking.",
+    highlights: [
+      "Implemented 3-Role Workflow: Applicant application submission → Admin verification → Approver digital sign-off.",
+      "Built dynamic PDF Generator exporting official CS Form No. 6 documents with digital signatures.",
+      "Integrated AI Chat Support Agent using Gemini API for applicant FAQ assistance.",
+      "Owned 100% of frontend development using React 19, Inertia.js, and Tailwind CSS v4."
+    ],
+    stack: ["React 19", "Inertia.js", "Tailwind CSS v4", "Laravel 12", "Gemini API", "PDF Engine"]
+  },
+  gym: {
+    title: "Boiyet's Fitness Gym Management System",
+    badge: "DEFENDED THESIS PROJECT & REAL CLIENT PLATFORM",
+    desc: "A comprehensive management and attendance ecosystem built from scratch for a local commercial fitness center. Digitalized member registration, daily check-ins, and financial reporting.",
+    highlights: [
+      "QR Code Attendance Scanner: Replaced manual paper logbooks with instant camera QR check-ins.",
+      "Member Portal: Automated membership expiration alerts, workout plans, and payment records.",
+      "Revenue Analytics Dashboard: Gives gym management visual breakdown of daily/monthly earnings.",
+      "Solo Full-Stack Architecture: Built independently using custom PHP, MySQL database schema, and AJAX."
+    ],
+    stack: ["PHP", "MySQL", "AJAX", "QR Camera Scanner", "JavaScript", "CSS3 Grid/Flexbox"]
+  }
+};
+
+const workflowMessages = {
+  hris: [
+    "Step 1: Applicant fills out CS Form No. 6 leave application and attaches digital signature.",
+    "Step 2: Custom Gemini AI bot validates form inputs and checks for missing required documents.",
+    "Step 3: Admin reviews application details in division office management portal.",
+    "Step 4: Approver grants final digital sign-off and system exports official PDF with signatures."
+  ],
+  gym: [
+    "Step 1: Member scans personal QR code at gym entrance camera terminal.",
+    "Step 2: Asynchronous AJAX request verifies membership status and expiration in MySQL.",
+    "Step 3: Visual/audio green light access granted and timestamped attendance record created.",
+    "Step 4: Real-time update sent to owner revenue, workout tracking, and active visitor dashboard."
+  ]
+};
+
+// Exposed globally for onclick handlers in HTML
+window.openProjectModal = function(projectId) {
+  const data = projectDetails[projectId];
+  if (!data) return;
+  document.getElementById('modalBadge').textContent = data.badge;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalDesc').textContent = data.desc;
+
+  const hlList = document.getElementById('modalHighlights');
+  hlList.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+
+  const stackRow = document.getElementById('modalStack');
+  stackRow.innerHTML = data.stack.map(s => `<span class="stack-chip">${s}</span>`).join('');
+
+  document.getElementById('projectModal').classList.add('active');
+};
+
+window.closeProjectModal = function(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
+  document.getElementById('projectModal').classList.remove('active');
+};
+
+window.setWorkflowStep = function(projectId, stepIdx) {
+  const card = document.getElementById(`ticket-${projectId}`);
+  if (!card) return;
+  const steps = card.querySelectorAll('.workflow-step');
+  steps.forEach((s, idx) => {
+    if (idx === stepIdx) s.classList.add('active');
+    else s.classList.remove('active');
+  });
+  const msg = workflowMessages[projectId][stepIdx];
+  spawnToast(`WORKFLOW STEP ${stepIdx + 1}`, msg);
+};
+
+export function initModals() {
+  // Close project modal on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.getElementById('projectModal')?.classList.remove('active');
+    }
+  });
+}
