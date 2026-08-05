@@ -37,9 +37,17 @@ export function initContactForm() {
         spawnToast('MESSAGE SENT', 'Thanks for reaching out! Kurt will reply as soon as possible.');
         form.reset();
       } else {
-        // Fallback or user prompt
-        spawnToast('FORM NOTIFIED', 'Thank you! If Web3Forms key is inactive, please email kurtfarinas2022@gmail.com directly.');
-        form.reset();
+        // Trigger mailto fallback with filled fields if key is inactive
+        spawnToast('EMAIL CLIENT OPENED', 'Opening your mail app to send directly to kurtfarinas2022@gmail.com...');
+        const name = formData.get('name') || '';
+        const email = formData.get('email') || '';
+        const topic = formData.get('topic') || '';
+        const message = formData.get('message') || '';
+
+        const mailtoUrl = `mailto:kurtfarinas2022@gmail.com?subject=${encodeURIComponent(topic || 'Portfolio Contact')}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+        setTimeout(() => {
+          window.location.href = mailtoUrl;
+        }, 800);
       }
     } catch (err) {
       // Graceful fallback for network issues or client error
