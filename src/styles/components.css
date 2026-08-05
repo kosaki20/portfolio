@@ -1639,7 +1639,8 @@
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 150;
+  z-index: 900;
+  pointer-events: auto;
 }
 
 .chat-launcher {
