@@ -28,8 +28,16 @@ function printCmd(cmd) {
 }
 
 const commands = {
-  help: () => `Available commands: <span class="out-special">whoami, timeline, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
+  help: () => `Available commands: <span class="out-special">whoami, cv, timeline, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
   whoami: () => `Kurt Fariñas — BS Computer Science graduate, San Jose City, Nueva Ecija. Frontend-leaning full-stack developer with 342 OJT hours on live government software.`,
+  cv: () => {
+    window.openResumeModal?.();
+    return `Opening inline PDF Resume preview...`;
+  },
+  resume: () => {
+    window.openResumeModal?.();
+    return `Opening inline PDF Resume preview...`;
+  },
   timeline: () => {
     setTimeout(() => document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' }), 300);
     return `Scrolling to career timeline...`;

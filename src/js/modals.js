@@ -80,11 +80,31 @@ window.setWorkflowStep = function(projectId, stepIdx) {
   spawnToast(`WORKFLOW STEP ${stepIdx + 1}`, msg);
 };
 
+window.openResumeModal = function() {
+  const modal = document.getElementById('resumeModal');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    spawnToast('CV PREVIEW', 'Loaded Kurt Fariñas Resume PDF viewer');
+  }
+};
+
+window.closeResumeModal = function(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
+  const modal = document.getElementById('resumeModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
 export function initModals() {
-  // Close project modal on Escape
+  // Close modals on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.getElementById('projectModal')?.classList.remove('active');
+      window.closeResumeModal();
     }
   });
 }
+
