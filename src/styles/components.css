@@ -1714,6 +1714,34 @@
   transform: translateY(-1px);
 }
 
+.msg-action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chat-action-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #FFF;
+  background: linear-gradient(135deg, var(--violet) 0%, var(--violet-dim) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px var(--violet-glow);
+}
+
+.chat-action-btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--violet-glow);
+}
+
 .chat-panel {
   position: absolute;
   bottom: 58px;
