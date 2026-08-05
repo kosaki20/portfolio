@@ -10,6 +10,29 @@ window.chatActionRegistry = {};
 // Knowledge base with page control actions, inline action buttons, & weighted intent scoring
 const botKnowledge = [
   {
+    category: 'summary',
+    keywords: ['summary', 'briefing', 'tldr', 'tl;dr', 'executive', 'recruiter', 'overview', 'quick summary', 'short', 'who is kurt', 'about kurt'],
+    response: "**RECRUITER EXECUTIVE BRIEFING (30-SECOND TL;DR)**\n\n" +
+              "• **Candidate**: Kurt Fariñas (BS Computer Science, STI College Class of 2026)\n" +
+              "• **Target Roles**: Junior Frontend Developer / Junior Full-Stack Developer / Laravel & React Engineer\n" +
+              "• **Key Achievements**:\n" +
+              "  - Owned 100% frontend dev on live government DepEd HRIS Approval System (342 hrs OJT, **98/100 rating**)\n" +
+              "  - Solo-engineered and defended commercial Gym Management Platform with live QR camera check-ins\n" +
+              "  - **1st Place Champion** in 2025 STI ThinkQuest academic competition\n" +
+              "• **Core Stack**: React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, MySQL\n" +
+              "• **Certifications**: Cisco Cybersecurity, Oracle Java Fundamentals\n" +
+              "• **Availability**: Open immediately | Remote, Hybrid, or Onsite",
+    action: () => {
+      spawnToast('EXECUTIVE BRIEFING', 'Displaying Recruiter 30-Second Summary Card');
+    },
+    actionButtons: [
+      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
+      { label: "Open HRIS Architecture Modal →", actionId: "open_hris_modal" },
+      { label: "Go to Message Form →", actionId: "focus_contact" }
+    ],
+    followUps: ["Tell me about the DepEd HRIS System", "What is his primary tech stack?", "How can I contact Kurt?"]
+  },
+  {
     category: 'hris',
     keywords: ['ojt', 'deped', 'hris', 'government', 'leave', 'form 6', 'cs form', 'approval', 'rating', 'hours', 'department of education'],
     response: "During my 342-hour internship at DepEd San Jose City Division Office, I served as lead frontend developer for the **DepEd HRIS Approval System** using React 19, Inertia.js, and Tailwind CSS v4.",
@@ -156,10 +179,16 @@ const fallbackResponse = {
   response: "I can provide details regarding Kurt's engineering background. You can ask about his **DepEd HRIS government system, Boiyet's Gym thesis platform, primary tech stack, academic credentials, or full-time availability**.",
   action: null,
   actionButtons: [
+    { label: "Recruiter 30-Sec Briefing →", actionId: "recruiter_briefing" },
     { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
     { label: "Go to Contact Form →", actionId: "focus_contact" }
   ],
-  followUps: ["DepEd HRIS System", "Gym Management Platform", "Primary Tech Stack", "Work Availability"]
+  followUps: ["Recruiter Summary", "DepEd HRIS System", "Gym Management Platform", "Primary Tech Stack"]
+};
+
+// Add actionId for recruiter briefing
+window.chatActionRegistry.recruiter_briefing = () => {
+  window.sendQuickPrompt?.('Recruiter Summary');
 };
 
 function scoreKnowledgeMatch(userText) {
@@ -206,7 +235,7 @@ export function initChatWidget() {
     if (isOpen) {
       if (!hasOpenedBefore) {
         hasOpenedBefore = true;
-        spawnToast('ASSISTANT READY', 'Kurt AI can answer questions and trigger actions for you.');
+        spawnToast('ASSISTANT READY', 'Kurt AI can provide executive summaries and navigate the portfolio.');
       }
       setTimeout(() => chatInput?.focus(), 250);
     }
@@ -226,7 +255,6 @@ export function initChatWidget() {
 
     let contentHtml = `<div class="msg-text">${isHtml ? formatMarkdown(text) : escapeHtml(text)}`;
 
-    // Render interactive inline action buttons inside message bubble
     if (sender === 'bot' && actionButtons && actionButtons.length > 0) {
       contentHtml += `<div class="msg-action-btns">`;
       actionButtons.forEach(btn => {
@@ -235,7 +263,6 @@ export function initChatWidget() {
       contentHtml += `</div>`;
     }
 
-    // Render suggested follow-up chips below
     if (sender === 'bot' && followUps && followUps.length > 0) {
       contentHtml += `<div class="msg-followups">`;
       followUps.forEach(chipText => {
@@ -286,7 +313,6 @@ export function initChatWidget() {
       removeTypingIndicator();
       addMessage('bot', match.response, true, match.followUps, match.actionButtons);
 
-      // Execute background action if present
       if (typeof match.action === 'function') {
         try {
           match.action(query);
@@ -315,5 +341,7 @@ function escapeHtml(str) {
 function formatMarkdown(str) {
   return str
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/`(.*?)`/g, '<code>$1</code>');
+    .replace(/`(.*?)`/g, '<code>$1</code>')
+    .replace(/\n\n/g, '<br><br>')
+    .replace(/\n• /g, '<br>• ');
 }
