@@ -1,5 +1,5 @@
 /* ========================================
-   UTILS — Toast, Email, Achievements, Konami
+   UTILS  |  Toast, Email, Achievements, Konami
    ======================================== */
 
 // Achievement toasts

@@ -1,5 +1,5 @@
 /* ========================================
-   CAROUSEL — Screenshot Carousels
+   CAROUSEL  |  Screenshot Carousels
    ======================================== */
 
 const carouselData = {
@@ -63,7 +63,7 @@ window.nextCarouselSlide = function(projectId) {
 window.openCurrentCarouselScreenshot = function(projectId) {
   const data = carouselData[projectId];
   const slide = data.slides[data.current];
-  openScreenshotModal(slide.src, slide.label + ' — ' + (projectId === 'hris' ? 'DepEd HRIS' : "Boiyet's Gym"));
+  openScreenshotModal(slide.src, slide.label + '  |  ' + (projectId === 'hris' ? 'DepEd HRIS' : "Boiyet's Gym"));
 };
 
 window.closeScreenshotModal = function() {

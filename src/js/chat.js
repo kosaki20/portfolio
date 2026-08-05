@@ -1,5 +1,5 @@
 /* ========================================
-   KURT AI — Interactive Assistant & Page Controller
+   KURT AI  |  Interactive Assistant & Page Controller
    ======================================== */
 
 import { spawnToast } from './utils.js';

@@ -1,5 +1,5 @@
 /* ========================================
-   CONTACT FORM — Web3Forms / Direct Submission Handler
+   CONTACT FORM  |  Web3Forms / Direct Submission Handler
    ======================================== */
 
 import { spawnToast } from './utils.js';

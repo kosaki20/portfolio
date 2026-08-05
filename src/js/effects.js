@@ -1,5 +1,5 @@
 /* ========================================
-   EFFECTS — Spotlight, Parallax, Boot, Counters, Observers
+   EFFECTS  |  Spotlight, Parallax, Boot, Counters, Observers
    ======================================== */
 
 // Spotlight cursor tracking
@@ -34,7 +34,7 @@ export function initParallax() {
 export function initBootSequence() {
   const bootLines = [
     "> initializing kurt.dev",
-    "> loading profile: Kurt Fariñas — BS Computer Science",
+    "> loading profile: Kurt Fariñas  |  BS Computer Science",
     "> checking status... <span class=\"ok\">OPEN_TO_WORK</span>",
     "> ready."
   ];

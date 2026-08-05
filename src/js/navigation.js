@@ -1,5 +1,5 @@
 /* ========================================
-   NAVIGATION — Hamburger, Active Links, Themes, Skill Filter
+   NAVIGATION  |  Hamburger, Active Links, Themes, Skill Filter
    ======================================== */
 
 import { spawnToast } from './utils.js';

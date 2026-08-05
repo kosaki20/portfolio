@@ -1,5 +1,5 @@
 /* ========================================
-   MODALS — Project Details + Workflow Steps
+   MODALS  |  Project Details + Workflow Steps
    ======================================== */
 
 import { spawnToast } from './utils.js';
