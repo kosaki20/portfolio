@@ -18,8 +18,7 @@ import { initChatWidget } from './js/chat.js';
 // Expose copyEmail globally for onclick handlers in HTML
 window.copyEmail = copyEmail;
 
-// Initialize everything on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
+function startApp() {
   // Visual effects
   initSpotlight();
   initParallax();
@@ -42,4 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Easter eggs & achievements
   initAchievements();
   initKonamiCode();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startApp);
+} else {
+  startApp();
+}
