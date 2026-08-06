@@ -152,19 +152,6 @@ const botKnowledge = [
     followUps: ["What systems has he built?", "View work availability", "Get contact information"]
   },
   {
-    category: 'minecraft',
-    keywords: ['minecraft', 'server', 'paper', 'playit', 'hosting', 'self-hosted', 'sysadmin', 'linux'],
-    response: "Kurt operates a self-hosted **Paper Minecraft server** for friends, tunneled securely via `playit.gg` on Linux. He manages Linux service units, tunneling protocols, and server performance tuning.",
-    action: () => {
-      window.executeChip?.('minecraft');
-    },
-    actionButtons: [
-      { label: "Run Terminal Whoami →", actionId: "run_term_whoami" },
-      { label: "View Primary Tech Stack →", actionId: "scroll_skills" }
-    ],
-    followUps: ["What is his primary tech stack?", "Tell me about DepEd HRIS", "View academic awards"]
-  },
-  {
     category: 'why_hire',
     keywords: ['why hire', 'why should we hire', 'strengths', 'capabilities', 'value', 'fit', 'reasons', 'what makes him'],
     response: "**4 REASONS TO HIRE KURT FARIÑAS FOR JUNIOR DEVELOPER SEATS**\n\n" +

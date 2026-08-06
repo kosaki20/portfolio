@@ -28,7 +28,7 @@ function printCmd(cmd) {
 }
 
 const commands = {
-  help: () => `Available commands: <span class="out-special">whoami, cv, timeline, skills, projects, awards, contact, minecraft, sudo hire-kurt, clear</span>`,
+  help: () => `Available commands: <span class="out-special">whoami, cv, timeline, skills, projects, awards, contact, sudo hire-kurt, clear</span>`,
   whoami: () => `Kurt Fariñas  |  BS Computer Science graduate, San Jose City, Nueva Ecija. Frontend-leaning full-stack developer with 342 OJT hours on live government software.`,
   cv: () => {
     window.openResumeModal?.();
@@ -55,7 +55,6 @@ const commands = {
     setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 300);
     return `Scrolling to contact. Email: kurtfarinas2022@gmail.com`;
   },
-  minecraft: () => `Yes, I run a self-hosted Paper Minecraft server for friends, tunneled through playit.gg. Uptime is rock solid.`,
   clear: () => {
     const termOutput = document.getElementById('termOutput');
     if (termOutput) termOutput.innerHTML = '';
