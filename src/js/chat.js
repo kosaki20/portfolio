@@ -19,7 +19,8 @@ const botKnowledge = [
     category: 'summary',
     keywords: ['summary', 'briefing', 'tldr', 'tl;dr', 'executive', 'recruiter', 'overview', 'quick summary', 'short', 'who is kurt', 'about kurt'],
     response: "**RECRUITER EXECUTIVE BRIEFING (30-SECOND TL;DR)**\n\n" +
-              "• **Candidate**: Kurt Fariñas (BS Computer Science, STI College Class of 2026)\n" +
+              "• **Candidate**: Kurt Fariñas (BS Computer Science Graduate, STI College)\n" +
+              "• **Leadership**: Elected **Alumni President** (Batch 2025–2026)\n" +
               "• **Target Roles**: Junior Frontend Developer / Junior Full-Stack Developer / Laravel & React Engineer\n" +
               "• **Key Achievements**:\n" +
               "  - Owned 100% frontend dev on DepEd HRIS Approval System project (342 hrs OJT, **98/100 rating**)\n" +
@@ -139,8 +140,8 @@ const botKnowledge = [
   },
   {
     category: 'education',
-    keywords: ['education', 'college', 'sti', 'degree', 'awards', 'thinkquest', 'tagisan', 'gpa', 'certifications', 'cisco', 'oracle'],
-    response: "Kurt earned his Bachelor of Science in Computer Science from **STI College San Jose** (Class of 2026). He won 1st Place (Champion) in the 2025 STI ThinkQuest academic competition and 3rd Place in 2024.",
+    keywords: ['education', 'college', 'sti', 'degree', 'awards', 'thinkquest', 'tagisan', 'gpa', 'certifications', 'cisco', 'oracle', 'alumni', 'president', 'leadership'],
+    response: "Kurt earned his Bachelor of Science in Computer Science from **STI College San Jose** and served as **Alumni President for Batch 2025–2026**. He won 1st Place (Champion) in the 2025 STI ThinkQuest academic competition and 3rd Place in 2024.",
     action: () => {
       const awardsEl = document.getElementById('awards');
       if (awardsEl) awardsEl.scrollIntoView({ behavior: 'smooth' });

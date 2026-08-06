@@ -49,7 +49,7 @@ const commands = {
   },
   awards: () => {
     setTimeout(() => document.getElementById('awards')?.scrollIntoView({ behavior: 'smooth' }), 300);
-    return `5 earned: DepEd OJT completion, Cisco cybersecurity, 2x ThinkQuest, Oracle Java Fundamentals.`;
+    return `6 earned: Alumni President (Batch 2025–2026), DepEd OJT completion, Cisco cybersecurity, 2x ThinkQuest, Oracle Java.`;
   },
   contact: () => {
     setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 300);
