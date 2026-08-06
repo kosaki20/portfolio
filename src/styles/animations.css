@@ -25,7 +25,11 @@
 }
 
 @keyframes revealUp {
-  to {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -53,31 +57,31 @@
 
 /* ---------- REVEAL ANIMATIONS ---------- */
 .hero h1.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero p.sub.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
 .status-row.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 
 .cta-row.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
 }
 
 .hero-showcase.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
 }
 
 .hero-stats.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
 }
 
 .terminal.reveal {
-  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+  animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
 }
 
 /* ---------- TICKET HIGHLIGHT ---------- */

@@ -2,9 +2,6 @@
    MAIN ENTRY POINT
    ======================================== */
 
-// Import all styles
-import './styles/index.css';
-
 // Import all JS modules
 import { copyEmail, initAchievements, initKonamiCode } from './js/utils.js';
 import { initTerminal } from './js/terminal.js';

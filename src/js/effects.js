@@ -42,7 +42,13 @@ export function initBootSequence() {
   const bootLog = document.getElementById('bootLog');
   let delay = 0;
 
+  ['heroH1', 'heroSub', 'heroStatus', 'heroCta', 'heroShowcase', 'heroStats', 'terminal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('reveal');
+  });
+
   if (bootLog) {
+    bootLog.innerHTML = '';
     bootLines.forEach((line) => {
       const el = document.createElement('span');
       el.className = 'line';
@@ -52,13 +58,6 @@ export function initBootSequence() {
       setTimeout(() => el.classList.add('show'), delay);
     });
   }
-
-  setTimeout(() => {
-    ['heroH1', 'heroSub', 'heroStatus', 'heroCta', 'heroShowcase', 'heroStats', 'terminal'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.add('reveal');
-    });
-  }, delay + 150);
 }
 
 // Animated number counters on scroll

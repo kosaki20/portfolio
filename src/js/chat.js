@@ -7,6 +7,12 @@ import { spawnToast } from './utils.js';
 // Global action registry for interactive buttons in bot messages
 window.chatActionRegistry = {};
 
+// Global helper for prompt chips
+window.sendQuickPrompt = function(promptText) {
+  initChatWidget();
+  window.sendQuickPrompt(promptText);
+};
+
 // Knowledge base with page control actions, inline action buttons, & weighted intent scoring
 const botKnowledge = [
   {

@@ -159,8 +159,7 @@ nav .wrap {
   letter-spacing: -0.025em;
   line-height: 1.08;
   max-width: 840px;
-  opacity: 0;
-  transform: translateY(12px);
+  opacity: 1;
 }
 
 .hero h1 .accent {
@@ -175,7 +174,7 @@ nav .wrap {
   color: var(--text-muted);
   max-width: 580px;
   line-height: 1.6;
-  opacity: 0;
+  opacity: 1;
 }
 
 .status-row {
@@ -184,7 +183,7 @@ nav .wrap {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  opacity: 0;
+  opacity: 1;
 }
 
 .chip {
@@ -223,7 +222,7 @@ nav .wrap {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  opacity: 0;
+  opacity: 1;
 }
 
 .btn {
@@ -272,7 +271,7 @@ nav .wrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .stat-card {
