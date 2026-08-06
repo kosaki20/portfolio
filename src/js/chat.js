@@ -302,7 +302,12 @@ function generateDynamicResponse(userText) {
 }
 
 function scoreKnowledgeMatch(userText) {
-  const text = userText.toLowerCase();
+  const rawText = userText.trim();
+  const text = rawText.toLowerCase();
+
+  // Detect if user's input begins with or includes a greeting
+  const hasGreeting = /^(hi\b|hello\b|hey\b|greetings\b|good\s(morning|afternoon|evening)|sup\b|howdy\b|yo\b)/i.test(text);
+
   let maxScore = 0;
   let bestMatch = null;
 
@@ -319,7 +324,23 @@ function scoreKnowledgeMatch(userText) {
     }
   });
 
-  return (maxScore > 0 && bestMatch) ? bestMatch : generateDynamicResponse(userText);
+  let matchResult = (maxScore > 0 && bestMatch) ? { ...bestMatch } : generateDynamicResponse(rawText);
+
+  // If user greeted first, prepend a warm, conversational greeting back before presenting information
+  if (hasGreeting && matchResult.category !== 'greeting') {
+    let greetingPrefix = "Hello there! Glad you reached out. 😊\n\n";
+    if (/good\smorning/i.test(text)) greetingPrefix = "Good morning! Great to meet you. 😊\n\n";
+    else if (/good\safternoon/i.test(text)) greetingPrefix = "Good afternoon! Great to meet you. 😊\n\n";
+    else if (/good\sevening/i.test(text)) greetingPrefix = "Good evening! Great to meet you. 😊\n\n";
+    else if (/hey|hi|hello/i.test(text)) greetingPrefix = "Hi there! Welcome to Kurt's portfolio. 😊\n\n";
+
+    matchResult = {
+      ...matchResult,
+      response: greetingPrefix + matchResult.response
+    };
+  }
+
+  return matchResult;
 }
 
 export function initChatWidget() {
