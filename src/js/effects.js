@@ -95,7 +95,7 @@ export function initCounters() {
   if (statsEl) statsObserver.observe(statsEl);
 }
 
-// Ticket reveal on scroll
+// Section element reveal on scroll
 export function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -104,9 +104,9 @@ export function initScrollReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.ticket').forEach(t => observer.observe(t));
+  document.querySelectorAll('.ticket, .timeline-item, .skill-group, .award-card').forEach(t => observer.observe(t));
 }
 
 // Scroll-triggered glow observer
