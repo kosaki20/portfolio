@@ -266,7 +266,7 @@ export function initChatWidget() {
     if (sender === 'bot' && followUps && followUps.length > 0) {
       contentHtml += `<div class="msg-followups">`;
       followUps.forEach(chipText => {
-        contentHtml += `<button type="button" class="chat-followup-chip" onclick="sendQuickPrompt('${escapeHtml(chipText)}')">${escapeHtml(chipText)}</button>`;
+        contentHtml += `<button type="button" class="chat-followup-chip" data-prompt="${escapeHtml(chipText)}">${escapeHtml(chipText)}</button>`;
       });
       contentHtml += `</div>`;
     }
@@ -276,6 +276,13 @@ export function initChatWidget() {
     chatMessages.appendChild(msgDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
+
+  chatMessages?.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chat-followup-chip');
+    if (chip && chip.dataset.prompt) {
+      window.sendQuickPrompt(chip.dataset.prompt);
+    }
+  });
 
   function showTypingIndicator() {
     const typingDiv = document.createElement('div');
@@ -335,7 +342,12 @@ export function initChatWidget() {
 }
 
 function escapeHtml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function formatMarkdown(str) {

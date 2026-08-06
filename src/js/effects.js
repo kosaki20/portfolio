@@ -18,6 +18,7 @@ export function initParallax() {
 
   showcaseContainer.addEventListener('mousemove', (e) => {
     const rect = showcaseCard.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     const rotateX = (-y / rect.height) * 16;
@@ -141,6 +142,7 @@ export function initProgressBar() {
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const total = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.width = (scrolled / total * 100).toFixed(1) + '%';
+    const percent = total > 0 ? (scrolled / total * 100).toFixed(1) : 0;
+    progressBar.style.width = percent + '%';
   });
 }
