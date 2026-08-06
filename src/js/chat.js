@@ -16,7 +16,7 @@ const botKnowledge = [
               "• **Candidate**: Kurt Fariñas (BS Computer Science, STI College Class of 2026)\n" +
               "• **Target Roles**: Junior Frontend Developer / Junior Full-Stack Developer / Laravel & React Engineer\n" +
               "• **Key Achievements**:\n" +
-              "  - Owned 100% frontend dev on live government DepEd HRIS Approval System (342 hrs OJT, **98/100 rating**)\n" +
+              "  - Owned 100% frontend dev on DepEd HRIS Approval System project (342 hrs OJT, **98/100 rating**)\n" +
               "  - Solo-engineered and defended commercial Gym Management Platform with live QR camera check-ins\n" +
               "  - **1st Place Champion** in 2025 STI ThinkQuest academic competition\n" +
               "• **Core Stack**: React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, MySQL\n" +

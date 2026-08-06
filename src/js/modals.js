@@ -7,15 +7,14 @@ import { spawnToast } from './utils.js';
 const projectDetails = {
   hris: {
     title: "DepEd HRIS Approval System",
-    badge: "DEPLOYED GOVERNMENT SYSTEM (342 HRS OJT)",
+    badge: "DEPED OJT SYSTEM PROJECT (342 HRS OJT)",
     desc: "An end-to-end digital approval workflow created for the Department of Education (DepEd) San Jose City ICT Division. Replaced paper-based Form CS No. 6 leave and request procedures with real-time multi-role tracking.",
     highlights: [
       "Implemented 3-Role Workflow: Applicant application submission → Admin verification → Approver digital sign-off.",
       "Built dynamic PDF Generator exporting official CS Form No. 6 documents with digital signatures.",
-      "Integrated AI Chat Support Agent using Gemini API for applicant FAQ assistance.",
       "Owned 100% of frontend development using React 19, Inertia.js, and Tailwind CSS v4."
     ],
-    stack: ["React 19", "Inertia.js", "Tailwind CSS v4", "Laravel 12", "Gemini API", "PDF Engine"]
+    stack: ["React 19", "Inertia.js", "Tailwind CSS v4", "Laravel 12", "PDF Engine"]
   },
   gym: {
     title: "Boiyet's Fitness Gym Management System",
@@ -34,9 +33,8 @@ const projectDetails = {
 const workflowMessages = {
   hris: [
     "Step 1: Applicant fills out CS Form No. 6 leave application and attaches digital signature.",
-    "Step 2: Custom Gemini AI bot validates form inputs and checks for missing required documents.",
-    "Step 3: Admin reviews application details in division office management portal.",
-    "Step 4: Approver grants final digital sign-off and system exports official PDF with signatures."
+    "Step 2: Admin reviews application details in division office management portal.",
+    "Step 3: Approver grants final digital sign-off and system exports official PDF with signatures."
   ],
   gym: [
     "Step 1: Member scans personal QR code at gym entrance camera terminal.",
