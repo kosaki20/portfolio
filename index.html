@@ -355,7 +355,7 @@
     <section class="section" id="projects">
       <div class="wrap">
         <div class="section-eyebrow">// featured projects</div>
-        <div class="section-title">Two systems, two different kinds of hard.</div>
+        <div class="section-title">Production-grade systems built for real-world workflows.</div>
 
         <div class="tickets">
           <article class="ticket" id="ticket-hris" data-skills="react,inertia,tailwind,laravel,javascript">
@@ -794,8 +794,8 @@
 
   <!-- Screenshot Lightbox -->
   <div id="screenshotModal" class="screenshot-modal-overlay" onclick="closeScreenshotModal()">
-    <div class="screenshot-modal-content" onclick="event.stopPropagation()">
-      <button type="button" class="screenshot-modal-close" onclick="closeScreenshotModal()">&#x2715;</button>
+    <div class="screenshot-modal-content" onclick="closeScreenshotModal()">
+      <button type="button" class="screenshot-modal-close" onclick="closeScreenshotModal()" aria-label="Close image preview">&#x2715;</button>
       <img id="screenshotModalImg" class="screenshot-modal-img" src="" alt="">
       <p id="screenshotModalCaption" class="screenshot-modal-caption"></p>
     </div>
