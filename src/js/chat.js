@@ -132,7 +132,8 @@ const botKnowledge = [
     },
     actionButtons: [
       { label: "Go to Contact Form →", actionId: "focus_contact" },
-      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" }
+      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
+      { label: "Run Sudo Hire-Kurt Command →", actionId: "run_term_hire" }
     ],
     followUps: ["How can I contact Kurt?", "Download Kurt's CV", "What is his tech stack?"]
   },
@@ -145,16 +146,80 @@ const botKnowledge = [
       if (awardsEl) awardsEl.scrollIntoView({ behavior: 'smooth' });
     },
     actionButtons: [
-      { label: "View Awards Section →", actionId: "scroll_awards" }
+      { label: "View Awards Section →", actionId: "scroll_awards" },
+      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" }
     ],
     followUps: ["What systems has he built?", "View work availability", "Get contact information"]
+  },
+  {
+    category: 'minecraft',
+    keywords: ['minecraft', 'server', 'paper', 'playit', 'hosting', 'self-hosted', 'sysadmin', 'linux'],
+    response: "Kurt operates a self-hosted **Paper Minecraft server** for friends, tunneled securely via `playit.gg` on Linux. He manages Linux service units, tunneling protocols, and server performance tuning.",
+    action: () => {
+      window.executeChip?.('minecraft');
+    },
+    actionButtons: [
+      { label: "Run Terminal Whoami →", actionId: "run_term_whoami" },
+      { label: "View Primary Tech Stack →", actionId: "scroll_skills" }
+    ],
+    followUps: ["What is his primary tech stack?", "Tell me about DepEd HRIS", "View academic awards"]
+  },
+  {
+    category: 'why_hire',
+    keywords: ['why hire', 'why should we hire', 'strengths', 'capabilities', 'value', 'fit', 'reasons', 'what makes him'],
+    response: "**4 REASONS TO HIRE KURT FARIÑAS FOR JUNIOR DEVELOPER SEATS**\n\n" +
+              "1. **Proven Production Software**: Owned 100% frontend dev on a live DepEd leave approval system (342 OJT hrs, **98/100 rating**) and solo-built/defended a commercial gym platform.\n" +
+              "2. **Modern Full-Stack Stack**: Skilled in React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, and MySQL.\n" +
+              "3. **Academic Champion**: 1st Place Champion in 2025 STI ThinkQuest academic competition.\n" +
+              "4. **Immediate Availability**: Open to Remote, Hybrid, or Onsite roles immediately.",
+    action: () => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    },
+    actionButtons: [
+      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
+      { label: "Go to Contact Form →", actionId: "focus_contact" },
+      { label: "Run Sudo Hire-Kurt Command →", actionId: "run_term_hire" }
+    ],
+    followUps: ["Tell me about DepEd HRIS", "What is his primary tech stack?", "Download Kurt's CV"]
+  },
+  {
+    category: 'react',
+    keywords: ['react', 'inertia', 'component', 'frontend', 'ui', 'spas', 'single page'],
+    response: "Kurt builds high-performance SPAs using **React 19, Inertia.js, and Vanilla CSS/Tailwind CSS v4**. In his DepEd HRIS project, he built dynamic multi-role approval interfaces and digital Form CS No. 6 leave workflows.",
+    action: () => {
+      window.openProjectModal?.('hris');
+    },
+    actionButtons: [
+      { label: "Open DepEd HRIS Modal →", actionId: "open_hris_modal" },
+      { label: "View Primary Tech Stack →", actionId: "scroll_skills" }
+    ],
+    followUps: ["Tell me about his Laravel skills", "Has he defended a thesis?", "View work availability"]
+  },
+  {
+    category: 'laravel',
+    keywords: ['laravel', 'backend', 'api', 'controller', 'eloquent', 'php', 'mysql', 'database'],
+    response: "Kurt engineers backend API architectures and relational databases using **Laravel 12**, custom **PHP 8+**, and **MySQL**. His thesis platform features automated membership subscriptions, AJAX real-time check-ins, and analytics dashboards.",
+    action: () => {
+      window.openProjectModal?.('gym');
+    },
+    actionButtons: [
+      { label: "Open Gym Thesis Modal →", actionId: "open_gym_modal" },
+      { label: "View Primary Tech Stack →", actionId: "scroll_skills" }
+    ],
+    followUps: ["Tell me about his React skills", "What is his OJT performance rating?", "Download CV"]
   }
 ];
 
 // Initialize global action handlers
 window.chatActionRegistry = {
-  open_hris_modal: () => window.openProjectModal?.('hris'),
-  open_gym_modal: () => window.openProjectModal?.('gym'),
+  open_hris_modal: () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    window.openProjectModal?.('hris');
+  },
+  open_gym_modal: () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    window.openProjectModal?.('gym');
+  },
   open_resume_modal: () => window.openResumeModal?.(),
   download_resume: () => {
     const link = document.createElement('a');
@@ -168,11 +233,16 @@ window.chatActionRegistry = {
     setTimeout(() => document.getElementById('contactName')?.focus(), 500);
   },
   copy_email: () => window.copyEmail?.(),
+  scroll_projects: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }),
   scroll_skills: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }),
   scroll_awards: () => document.getElementById('awards')?.scrollIntoView({ behavior: 'smooth' }),
+  run_term_whoami: () => window.executeChip?.('whoami'),
+  run_term_cv: () => window.executeChip?.('cv'),
+  run_term_hire: () => window.executeChip?.('sudo hire-kurt'),
   theme_violet: () => window.setThemeAccent?.('violet'),
   theme_emerald: () => window.setThemeAccent?.('emerald'),
-  theme_cyan: () => window.setThemeAccent?.('cyan')
+  theme_cyan: () => window.setThemeAccent?.('cyan'),
+  theme_orange: () => window.setThemeAccent?.('orange')
 };
 
 window.triggerChatAction = function(actionId) {
@@ -181,21 +251,67 @@ window.triggerChatAction = function(actionId) {
   }
 };
 
-const fallbackResponse = {
-  response: "I can provide details regarding Kurt's engineering background. You can ask about his **DepEd HRIS government system, Boiyet's Gym thesis platform, primary tech stack, academic credentials, or full-time availability**.",
-  action: null,
-  actionButtons: [
-    { label: "Recruiter 30-Sec Briefing →", actionId: "recruiter_briefing" },
-    { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
-    { label: "Go to Contact Form →", actionId: "focus_contact" }
-  ],
-  followUps: ["Recruiter Summary", "DepEd HRIS System", "Gym Management Platform", "Primary Tech Stack"]
-};
-
-// Add actionId for recruiter briefing
 window.chatActionRegistry.recruiter_briefing = () => {
   window.sendQuickPrompt?.('Recruiter Summary');
 };
+
+function generateDynamicResponse(userText) {
+  const query = userText.trim();
+  const lower = query.toLowerCase();
+
+  // Custom greeting handling
+  if (/^(hi|hello|hey|sup|greetings|good\s(morning|afternoon|evening)|who are you|what is your name)/i.test(lower)) {
+    return {
+      category: 'greeting',
+      response: "Hello there! I'm **Kurt AI**, Kurt Fariñas's interactive assistant. I can answer any questions about his **DepEd HRIS government project**, **Boiyet's Gym thesis platform**, **React/Laravel stack**, or **work availability**! What would you like to explore?",
+      action: null,
+      actionButtons: [
+        { label: "Recruiter 30-Sec Briefing →", actionId: "recruiter_briefing" },
+        { label: "Open DepEd HRIS Modal →", actionId: "open_hris_modal" },
+        { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" }
+      ],
+      followUps: ["Recruiter Summary", "Tell me about DepEd HRIS", "What is his tech stack?"]
+    };
+  }
+
+  // Courtesy handling
+  if (/(thank|thanks|great|cool|awesome|perfect|nice|bye|goodbye|appreciate)/i.test(lower)) {
+    return {
+      category: 'courtesy',
+      response: "You're very welcome! If you have any further questions or would like to schedule an interview with Kurt, feel free to send a message via the contact form or download his resume.",
+      action: null,
+      actionButtons: [
+        { label: "Go to Contact Form →", actionId: "focus_contact" },
+        { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" }
+      ],
+      followUps: ["How can I contact Kurt?", "Download Kurt's CV", "What is his primary tech stack?"]
+    };
+  }
+
+  // Tailored dynamic fallback generator for custom queries
+  let topicSummary = "";
+  if (lower.includes('experience') || lower.includes('work') || lower.includes('background') || lower.includes('history')) {
+    topicSummary = "Kurt has completed a **342-hour OJT internship at DepEd** (98/100 performance rating) as lead frontend developer for their leave approval system, and solo-engineered/defended **Boiyet's Fitness Gym Management System**.";
+  } else if (lower.includes('code') || lower.includes('programming') || lower.includes('tech') || lower.includes('skill') || lower.includes('stack')) {
+    topicSummary = "Kurt specializes in **React 19, Inertia.js, Laravel 12, Tailwind CSS v4, PHP, and MySQL**. He holds official certifications in Java Fundamentals (Oracle Academy) and Cybersecurity (Cisco Academy).";
+  } else if (lower.includes('contact') || lower.includes('email') || lower.includes('reach') || lower.includes('hire') || lower.includes('availabl')) {
+    topicSummary = "Kurt is actively seeking **Junior Developer seats** (Remote, Hybrid, or Onsite). You can reach him directly at **kurtfarinas2022@gmail.com** or send a message below.";
+  } else {
+    topicSummary = `Regarding "${query}": Kurt Fariñas is a BS Computer Science graduate (STI College Class of 2026) who builds production web applications using React, Laravel, and Tailwind CSS.`;
+  }
+
+  return {
+    category: 'dynamic',
+    response: topicSummary + "\n\nFeel free to explore the interactive cards below or ask for specific details about his projects, certifications, or resume!",
+    action: null,
+    actionButtons: [
+      { label: "Recruiter 30-Sec Briefing →", actionId: "recruiter_briefing" },
+      { label: "Launch Resume PDF Viewer →", actionId: "open_resume_modal" },
+      { label: "Go to Contact Form →", actionId: "focus_contact" }
+    ],
+    followUps: ["Tell me about DepEd HRIS", "What is his primary tech stack?", "Are you open to full-time roles?"]
+  };
+}
 
 function scoreKnowledgeMatch(userText) {
   const text = userText.toLowerCase();
@@ -215,7 +331,7 @@ function scoreKnowledgeMatch(userText) {
     }
   });
 
-  return (maxScore > 0 && bestMatch) ? bestMatch : fallbackResponse;
+  return (maxScore > 0 && bestMatch) ? bestMatch : generateDynamicResponse(userText);
 }
 
 export function initChatWidget() {
